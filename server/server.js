@@ -20,6 +20,40 @@ mongoose
     console.error('Error connecting to MongoDB:', err);
   });
 
+
+
+// api/question/search?searchBy=name&search=async
+app.get('/api/question/search/', async (req, res) => {
+  try {
+    const filterBy = req.query.searchBy;
+    const keyword = req.query.search;
+
+    const searchRegExp = new RegExp(keyword, 'i');
+
+    const questions = await QuestionModel.find({ [filterBy]: keyword });
+
+    return res.status(200).json(questions);
+  }
+
+  catch (err) {
+    return next(err);
+  }
+});
+
+// api/question/sort?sortBy=name&sortDir=asc
+app.get('/api/question/sort/', async (req, res) => {
+  try {
+    const sortBy = req.query.sortBy;
+    const sortDirection = req.query.dir;
+
+    const questions = await QuestionModel.sort({ [sortBy]: sortDirection });
+    return res.status(200).json(questions);
+  }
+
+  catch (err) {
+    return next(err);
+  }
+})
   app.get("/api/question/all", async (req, res, next) => {
     try {
       const questions = await QuestionModel.find();
@@ -67,6 +101,67 @@ mongoose
       res.json(deletedQuestion);
     } catch (err) {
       next(err);
+    }
+  });
+// api/question/search?searchBy=name&search=async
+app.get('/api/question/search/', async (req, res) => {
+  try {
+    const filterBy = req.query.searchBy;
+    const keyword = req.query.search;
+
+    const searchRegExp = new RegExp(keyword, 'i');
+
+    const questions = await QuestionModel.find({ [filterBy]: keyword });
+
+    return res.status(200).json(questions);
+  }
+
+  catch (err) {
+    return next(err);
+  }
+});
+
+// api/question/sort?sortBy=name&sortDir=asc
+app.get('/api/question/sort/', async (req, res) => {
+  try {
+    const sortBy = req.query.sortBy;
+    const sortDirection = req.query.dir;
+
+    const questions = await QuestionModel.sort({ [sortBy]: sortDirection });
+    return res.status(200).json(questions);
+  }
+
+  catch (err) {
+    return next(err);
+  }
+})
+
+
+
+  app.get("/api/answer/getOne/:id", async (req, res) => {
+    try {
+      const answer = await AnswerModel.findById(req.params.id);
+      res.json(answer);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  app.post("/api/answer/create", async (req, res, next) => {
+    try {
+      const saved = await AnswerModel.create(req.body);
+      return res.json(saved);
+    } catch (err) {
+      return next(err);
+    }
+  });
+
+  app.delete("/api/answer/delete/:id", async (req, res, next) => {
+    try {
+      const deletedAnswer = await AnswerModel.findByIdAndDelete(req.params.id);
+      return res.json(deletedAnswer);
+    } catch (err) {
+      return next(err);
     }
   });
 
