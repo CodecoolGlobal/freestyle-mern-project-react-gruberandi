@@ -5,10 +5,10 @@ const questionSchema = new Schema({
     description: String,
     timesAsked: Number,
     topic: [String],
-    comments: {
+    comments: [{
         dateAdded:Date,
         commentText:String
-    },
+    }],
     isFavourite: Boolean,
     });
     
