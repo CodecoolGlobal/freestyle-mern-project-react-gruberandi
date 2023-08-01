@@ -1,7 +1,5 @@
-import express from 'express';
-import mongoose from 'mongoose';
-// import Answer from './model/Answer';
-// import Question from './model/Question';
+const express = require('express');
+const mongoose = require('mongoose');
 const AnswerModel = require("./model/answer");
 const QuestionModel = require("./model/question");
 
@@ -135,21 +133,11 @@ app.get('/api/question/sort/', async (req, res) => {
     return next(err);
   }
 })
-
-
-
-  app.get("/api/answer/getOne/:id", async (req, res) => {
-    try {
-      const answer = await AnswerModel.findById(req.params.id);
-      res.json(answer);
-    } catch (err) {
-      next(err);
-    }
-  });
   
   app.post("/api/answer/create", async (req, res, next) => {
     try {
       const saved = await AnswerModel.create(req.body);
+      console.log(saved)
       return res.json(saved);
     } catch (err) {
       return next(err);
@@ -172,24 +160,6 @@ app.get('/api/question/sort/', async (req, res) => {
       res.json(answer);
     } catch (err) {
       next(err);
-    }
-  });
-  
-  app.post("/api/answer/create", async (req, res, next) => {
-    try {
-      const saved = await AnswerModel.create(req.body);
-      return res.json(saved);
-    } catch (err) {
-      return next(err);
-    }
-  });
-
-  app.delete("/api/answer/delete/:id", async (req, res, next) => {
-    try {
-      const deletedAnswer = await AnswerModel.findByIdAndDelete(req.params.id);
-      return res.json(deletedAnswer);
-    } catch (err) {
-      return next(err);
     }
   });
 
