@@ -5,7 +5,7 @@ const answerSchema = new Schema({
     answer_text: String,
     });
     
-    const Answer = model('Answer', answerSchemaSchema);
+    const Answer = model('Answer', answerSchema);
     
     
     module.exports = Answer;

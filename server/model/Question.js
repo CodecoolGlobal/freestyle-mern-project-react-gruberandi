@@ -9,7 +9,7 @@ const questionSchema = new Schema({
     comments:String,
     });
     
-    const Question = model('Question', questionSchemaS);
+    const Question = model('Question', questionSchema);
     
     
     module.exports = Question;
