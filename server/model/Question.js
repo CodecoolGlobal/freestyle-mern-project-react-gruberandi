@@ -6,6 +6,7 @@ const questionSchema = new Schema({
     theme: String,
     question: String,
     timesAsked: Number,
+    answeredCorrectly: Number,
     comments: [{
         dateAdded:Date,
         commentText:String

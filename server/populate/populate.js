@@ -20,6 +20,7 @@ const populate = async () => {
                 theme: curr.theme,
                 question: curr.question,
                 timesAsked: 0,
+                answeredCorrectly: 0,
                 comments: [],
                 isFavorite: false,
             }
