@@ -55,7 +55,7 @@ app.get('/api/question/sort/', async (req, res) => {
 })
   app.get("/api/question/all", async (req, res, next) => {
     try {
-      const questions = await QuestionModel.find();
+      const questions = await QuestionModel.find({});
       res.json(questions);
     } catch (err) {
       next(err);
