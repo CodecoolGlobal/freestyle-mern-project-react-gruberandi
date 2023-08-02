@@ -21,7 +21,7 @@ mongoose
 
 
 // api/question/search?searchBy=name&search=async
-app.get('/api/question/search/', async (req, res) => {
+app.get('/api/question/search/', async (req, res , next ) => {
   try {
     const filterBy = req.query.searchBy;
     const keyword = req.query.search;
@@ -39,7 +39,7 @@ app.get('/api/question/search/', async (req, res) => {
 });
 
 // api/question/sort?sortBy=name&sortDir=asc
-app.get('/api/question/sort/', async (req, res) => {
+app.get('/api/question/sort/', async (req, res, next) => {
   try {
     const sortBy = req.query.sortBy;
     const sortDirection = req.query.dir;
@@ -61,7 +61,7 @@ app.get('/api/question/sort/', async (req, res) => {
     }
   });
   
-  app.get("/api/question/getOne/:id", async (req, res) => {
+  app.get("/api/question/getOne/:id", async (req, res, next) => {
     try{
       const question = await QuestionModel.findById(req.params.id);
       res.json(question);
@@ -102,7 +102,7 @@ app.get('/api/question/sort/', async (req, res) => {
     }
   });
 // api/question/search?searchBy=name&search=async
-app.get('/api/question/search/', async (req, res) => {
+app.get('/api/question/search/', async (req, res, next ) => {
   try {
     const filterBy = req.query.searchBy;
     const keyword = req.query.search;
@@ -120,7 +120,7 @@ app.get('/api/question/search/', async (req, res) => {
 });
 
 // api/question/sort?sortBy=name&sortDir=asc
-app.get('/api/question/sort/', async (req, res) => {
+app.get('/api/question/sort/', async (req, res, next ) => {
   try {
     const sortBy = req.query.sortBy;
     const sortDirection = req.query.dir;
@@ -154,12 +154,12 @@ app.get('/api/question/sort/', async (req, res) => {
   });
 
 
-  app.get("/api/answer/getOne/:id", async (req, res) => {
+  app.get("/api/answer/getOne/:id", async (req, res, next) => {
     try {
       const answer = await AnswerModel.findById(req.params.id);
       res.json(answer);
     } catch (err) {
-      next(err);
+     return next(err);
     }
   });
 
