@@ -59,7 +59,7 @@ if(!answer){
 
   else if (answeredCorrectly === null) {
     return (
-      <>
+      <div className="answer-container">
         <AnswerPart
           answer={answer[0].answers[answerOrder[0]]}
           onAnswer={handleAnswer} />
@@ -69,7 +69,7 @@ if(!answer){
         <AnswerPart
           answer={answer[0].answers[answerOrder[2]]}
           onAnswer={handleAnswer} />
-      </>
+      </div>
     )
   }
 
