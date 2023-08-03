@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import './Question.css';
+import Comment from "./Comment";
 
 import AnswerPart from "./AnswerPart";
 const Answer = (props) => {
@@ -9,6 +10,7 @@ const Answer = (props) => {
   const [answer, setAnswer] = useState(null)
   const [answerOrder, setAnswerOrder] = useState(null);
   const [answeredCorrectly, setAnswereredCorrectly] = useState(null);
+  const [commentsShow, setCommentsShow] = useState(false)
 
   const sendComment=(id, comment) => {
     const newQuestion = { ...randomQuestion };
@@ -90,6 +92,8 @@ const Answer = (props) => {
         <div>congrats!</div>
         <button
           onClick={() => { setAnswereredCorrectly(null); props.onNewQuestion(randomQuestion._id) }}>give me another question</button>
+          <button onClick={() => {setCommentsShow(true)}}>Show Comments</button>
+          <Comment question={randomQuestion} commentsShow={commentsShow}/>
       </>)
 
   }
@@ -110,7 +114,8 @@ const Answer = (props) => {
 
           onClick={()=>{console.log(randomQuestion._id); sendComment(randomQuestion._id, comment )}}
           >Submit comment</button>
-
+          <button onClick={() => {setCommentsShow(true)}}>Show Comments</button>
+          <Comment question={randomQuestion} commentsShow={commentsShow}/>
         </div>
 
       </>)
