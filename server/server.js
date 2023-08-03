@@ -1,14 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const AnswerModel = require("./model/answer");
-const QuestionModel = require("./model/question");
+const AnswerModel = require("./model/Answer");
+const QuestionModel = require("./model/Question");
 
 const app = express();
 app.use(express.json())
 
 
 //MongoDB import
-  const mongoURL = 'mongodb+srv://PAlet:1234@cluster0.mxdljml.mongodb.net/';
+const mongoURL = 'mongodb+srv://PAlet:1234@cluster0.mxdljml.mongodb.net/';
+
 mongoose
   .connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -54,7 +55,7 @@ app.get('/api/question/sort/', async (req, res, next) => {
 })
   app.get("/api/question/all", async (req, res, next) => {
     try {
-      const questions = await QuestionModel.find();
+      const questions = await QuestionModel.find({});
       res.json(questions);
     } catch (err) {
       next(err);

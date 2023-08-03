@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 const answerSchema = new Schema({
    
-    right_answer: String,
-    false_answer_1:String,
-    false_answer_2: String,
-    answersWhichQuestion: {type: Schema.Types.ObjectId, ref: 'Question'},
-    
+    _id: Number,
+    answers: [{
+        answer: String,
+        correct: Boolean,
+    }],
+    answersWhichQuestion: {type: Number, ref: 'Question'},
+    //Schema.Types.ObjectId
     });
     
     const Answer = model('Answer', answerSchema);

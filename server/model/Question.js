@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 const questionSchema = new Schema({
-    name: String,
-    description: String,
+    
+    _id: Number,
+    theme: String,
+    question: String,
     timesAsked: Number,
-    topic: [String],
-    comments: {
+    answeredCorrectly: Number,
+    comments: [{
         dateAdded:Date,
         commentText:String
-    },
-    isFavourite: Boolean,
+    }],
+    isFavorite: Boolean,
     });
     
     const Question = model('Question', questionSchema);

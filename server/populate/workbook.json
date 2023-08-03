@@ -1,0 +1,1264 @@
+{
+	"questions": [
+		{
+			"theme": "Functional patterns",
+			"question": "What is a callback function?",
+			"answers": [
+				{
+					"answer": "A callback function is a function that is passed as an argument to another function and is executed later, usually after the completion of the parent function.",
+					"correct": true
+				},
+				{
+					"answer": "A callback function is a method used for direct communication between two unrelated functions within a programming language.",
+					"correct": false
+				},
+				{
+					"answer": "A callback function is primarily used to handle errors and exceptions in a program's execution flow.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Functional patterns",
+			"question": "What is the difference between `let` & `var`?",
+			"answers": [
+				{
+					"answer": "In JavaScript, let is block-scoped, meaning it is only accessible within the block it is declared in, while var is function-scoped and is accessible throughout the entire function where it is declared.",
+					"correct": true
+				},
+				{
+					"answer": "Both let and var are block-scoped in JavaScript, and there is no difference between their scoping behaviour.",
+					"correct": false
+				},
+				{
+					"answer": "var is used for declaring constants, whereas let is used for variables that can be reassigned during the program's execution.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Functional patterns",
+			"question": "Write an example where using the `var` declaration instead of the `let` could create hard to debug code.",
+			"answers": [
+				{
+					"answer": "In this case, the loop will finish executing before the setTimeout callbacks are triggered. Since var is function-scoped, by the time the callbacks are executed, the value of i will be 5 for all of them.",
+					"correct": true
+				},
+				{
+					"answer": "There is no specific example where using var instead of let would create hard-to-debug code due to scoping issues since both var and let behave similarly in terms of variable scope.",
+					"correct": false
+				},
+				{
+					"answer": "Using var and let for different variable types wouldn't create hard-to-debug code since both can be used for any variable type in JavaScript. They are interchangeable in this aspect.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Functional patterns",
+			"question": "Give a practical example where you would use the `reduce` function in javascript.",
+			"answers": [
+				{
+					"answer": "const numbers = [10, 5, 3, 8, 2];\nconst sum = numbers.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue;\n}, 0);\n\nconsole.log(sum);",
+					"correct": true
+				},
+				{
+					"answer": "const average = numbers.reduce((accumulator, currentValue) => {\n  return accumulator + currentValue;\n}, 0) / numbers.length;\n\nconsole.log(average);",
+					"correct": false
+				},
+				{
+					"answer": "const words = ['Hello', 'world', 'from', 'ChatGPT'];\nconst mergedString = words.reduce((accumulator, currentValue) => {\n  return accumulator + ' ' + currentValue;\n}, '');\n\nconsole.log(mergedString);",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Functional patterns",
+			"question": "Give a practical example where you would use the `map` function in javascript.",
+			"answers": [
+				{
+					"answer": "const celsiusTemperatures = [25, 30, 15, 20, 10];\nconst fahrenheitTemperatures = celsiusTemperatures.map((celsius) => {\n  return (celsius * 9/5) + 32;\n});\nconsole.log(fahrenheitTemperatures);",
+					"correct": true
+				},
+				{
+					"answer": "const numbers = [1, 2, 3, 4];\nconst result = numbers.map((num) => {\n  console.log(num * num);\n});",
+					"correct": false
+				},
+				{
+					"answer": "const names = ['Alice', 'Bob', 'Charlie', 'David'];\nconst badResult = names.map((name, index) => {\n  if (index % 2 === 0) {\n    return name;\n  }\n});",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Functional patterns",
+			"question": "Give a practical example where you would use the `filter` function in javascript.",
+			"answers": [
+				{
+					"answer": "const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\nconst evenNumbers = numbers.filter((num) => num % 2 === 0);\n\nconsole.log(evenNumbers);",
+					"correct": true
+				},
+				{
+					"answer": "const names = ['Alice', 'Bob', 'Charlie', 'David'];\nconst incorrectResult = names.filter((name) => {\n  if (name.length > 5) {\n    return name.toUpperCase();\n  }\n});",
+					"correct": false
+				},
+				{
+					"answer": "const person = {\n  name: 'John',\n  age: 30,\n  occupation: 'Engineer',\n};\n\nconst filteredPerson = person.filter((item) => {\n  return item === 'John';\n});",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "What is a web server?",
+			"answers": [
+				{
+					"answer": "A web server is a computer program or software that responds to HTTP requests from clients, such as web browsers, and serves web content, like HTML pages, images, and other resources, over the internet.",
+					"correct": true
+				},
+				{
+					"answer": "A web server is a physical device used to access the internet and browse websites.",
+					"correct": false
+				},
+				{
+					"answer": "A web server is responsible for designing and creating websites and web applications.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "Explain the client-server architecture.",
+			"answers": [
+				{
+					"answer": "The client-server architecture is a network model where clients (such as web browsers or applications) send requests to a central server, which processes these requests and sends back responses with the requested information or services.",
+					"correct": true
+				},
+				{
+					"answer": "In the client-server architecture, clients and servers are both equal peers, sharing responsibilities and resources to achieve a decentralized network.",
+					"correct": false
+				},
+				{
+					"answer": "In the client-server architecture, clients directly interact with each other without involving any central server, creating a peer-to-peer network model.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "What is the difference between synchronous and asynchronous execution?",
+			"answers": [
+				{
+					"answer": "Synchronous execution performs tasks sequentially, one after another, blocking the program's execution until each task is completed before moving to the next one.",
+					"correct": true
+				},
+				{
+					"answer": "Asynchronous execution performs tasks in parallel, allowing the program to continue executing other tasks without waiting for the completion of each task.",
+					"correct": false
+				},
+				{
+					"answer": "Synchronous execution is commonly used for handling I/O operations, while asynchronous execution is more suitable for CPU-bound tasks.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "What is `npm`? Why is it useful?",
+			"answers": [
+				{
+					"answer": "npm stands for Node Package Manager. It is a package manager for Node.js, allowing developers to install, manage, and share JavaScript libraries and tools easily.",
+					"correct": true
+				},
+				{
+					"answer": "npm is a programming language used for front-end web development.",
+					"correct": false
+				},
+				{
+					"answer": "npm is exclusive to a particular operating system and cannot be used on different platforms.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "What is the difference between the `dependencies` & `devDependencies` in a `package.json` file?",
+			"answers": [
+				{
+					"answer": "In a package.json file, dependencies are packages required for the application to run correctly in production.",
+					"correct": true
+				},
+				{
+					"answer": "devDependencies are packages required for the application to run correctly in production.",
+					"correct": false
+				},
+				{
+					"answer": "dependencies are packages used for development purposes and are not needed in the production environment.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "What would be the impact of javascript `fetch` if it was not asynchronous?",
+			"answers": [
+				{
+					"answer": "If fetch in JavaScript was not asynchronous, it would block the main thread, causing the entire application to freeze during the network request, making the user interface unresponsive.",
+					"correct": true
+				},
+				{
+					"answer": "If fetch was not asynchronous, it would have no impact on the application's performance or responsiveness.",
+					"correct": false
+				},
+				{
+					"answer": "If fetch was not asynchronous, it would lead to faster network requests and better application performance.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "Why benefits would bring to a developer to use the `Postman` application?",
+			"answers": [
+				{
+					"answer": "Postman helps developers test and debug API endpoints efficiently, providing a user-friendly interface to send requests, inspect responses, and handle various HTTP methods.",
+					"correct": true
+				},
+				{
+					"answer": "Postman is primarily used for front-end web development, and it offers no benefits for backend development or API testing.",
+					"correct": false
+				},
+				{
+					"answer": "Postman can only be used for simple HTTP requests and does not support advanced API testing and automation features.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "List the parts of the URL.",
+			"answers": [
+				{
+					"answer": "The parts of a URL include the protocol/scheme (e.g., \"https\"), the domain/host (e.g., \"www.example.com\"), and the path (e.g., \"/page\").",
+					"correct": true
+				},
+				{
+					"answer": "The parts of a URL include the protocol/scheme (e.g., \"ftp\"), the query parameters (e.g., \"?id=123\"), and the bookmark/fragment (e.g., \"#section\").",
+					"correct": false
+				},
+				{
+					"answer": "The parts of a URL include the username (e.g., \"user123\"), the port (e.g., \":8080\"), and the protocol/scheme (e.g., \"http\").",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "What is query parameter?",
+			"answers": [
+				{
+					"answer": "Query parameters are key-value pairs in a URL's query string used to send data to a web server as part of an HTTP request.",
+					"correct": true
+				},
+				{
+					"answer": "Query parameters are used to define the styling and layout of a webpage.",
+					"correct": false
+				},
+				{
+					"answer": "Query parameters are used to encrypt sensitive data in the URL to enhance security during data transmission.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "What kind of HTTP status codes do you know?",
+			"answers": [
+				{
+					"answer": "status code 200 means \"OK.\" It indicates the request was successful, and the server returned the requested data as the response.",
+					"correct": true
+				},
+				{
+					"answer": "status code 204 means \"No Content.\" It indicates the server successfully processed the request, but there is no data to send back.",
+					"correct": true
+				},
+				{
+					"answer": "status code 400 means \"Bad Request.\" It indicates that the server cannot understand the request due to a client error or malformed request.",
+					"correct": true
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "How does an HTTP Request look like? What are the most relevant HTTP header fields?",
+			"answers": [
+				{
+					"answer": "An HTTP request consists of a request line, headers, and an optional message body. The request line includes the HTTP method (e.g., GET, POST) and the requested resource (e.g., /page). Headers provide additional information, and the message body contains data, often used in POST requests.",
+					"correct": true
+				},
+				{
+					"answer": "An HTTP request consists only of a request line, specifying the requested resource.",
+					"correct": false
+				},
+				{
+					"answer": "The most relevant HTTP header fields are Accept, Content-Type, and User-Agent.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "How does an HTTP Response look like? What are the most relevant HTTP header fields?",
+			"answers": [
+				{
+					"answer": "An HTTP response consists of a status line, headers, and an optional message body. The status line includes the HTTP version, status code (e.g., 200 OK), and a reason phrase. Headers provide additional information, and the message body contains the response data.",
+					"correct": true
+				},
+				{
+					"answer": "An HTTP response consists only of a status line, indicating the status code and the reason phrase.",
+					"correct": false
+				},
+				{
+					"answer": "The most relevant HTTP header fields are Host, Connection, and Server.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Web basics",
+			"question": "Why should you ignore the `node_modules` folder in `.gitignore`?",
+			"answers": [
+				{
+					"answer": "The node_modules folder contains all the dependencies required for a Node.js project, and it can be very large. Ignoring it in .gitignore avoids unnecessarily adding all the dependencies to the version control system, reducing repository size.",
+					"correct": true
+				},
+				{
+					"answer": "The node_modules folder is essential for the project's functionality, and ignoring it in .gitignore will not affect the project.",
+					"correct": false
+				},
+				{
+					"answer": "Ignoring the node_modules folder in .gitignore prevents the project from running correctly and causes dependency-related issues.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Rest API: Serve and Fetch",
+			"question": "Why is it recommend for a developer to use the http methods `get`, `put`, `delete`?",
+			"answers": [
+				{
+					"answer": "It is recommended for a developer to use the HTTP methods GET, PUT, and DELETE because they correspond to the standard CRUD (Create, Read, Update, Delete) operations used for data manipulation in web applications.",
+					"correct": true
+				},
+				{
+					"answer": "Using GET, PUT, and DELETE methods has no advantages over other HTTP methods for data manipulation.",
+					"correct": false
+				},
+				{
+					"answer": "The GET, PUT, and DELETE methods are not commonly supported by web servers and can lead to compatibility issues.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Rest API: Serve and Fetch",
+			"question": "How does a `POST` request look like when it is made from a web browser (on the front end written)?",
+			"answers": [
+				{
+					"answer": "When a POST request is made from a web browser (on the front end), it includes data in the request body and sends it to the server. It is commonly used for submitting forms or creating new resources.",
+					"correct": true
+				},
+				{
+					"answer": "A POST request made from a web browser does not contain any data, and it relies solely on the URL and request headers to communicate with the server.",
+					"correct": false
+				},
+				{
+					"answer": "The POST request from a web browser is typically performed using the GET method, as it is more straightforward and faster for data submission.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Rest API: Serve and Fetch",
+			"question": "What is an API?",
+			"answers": [
+				{
+					"answer": "API stands for Application Programming Interface. It is a set of rules and protocols that allow different software applications to communicate and interact with each other.",
+					"correct": true
+				},
+				{
+					"answer": "API stands for Advanced Programming Interface. It is a specialized interface used for complex and advanced software development.",
+					"correct": false
+				},
+				{
+					"answer": "API stands for Application Package Integration. It is a method to package and integrate multiple applications into one.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Rest API: Serve and Fetch",
+			"question": "What is REST API?",
+			"answers": [
+				{
+					"answer": "REST API stands for Representational State Transfer Application Programming Interface. It is a type of web API that follows the principles of REST architecture, using standard HTTP methods like GET, POST, PUT, and DELETE for data manipulation.",
+					"correct": true
+				},
+				{
+					"answer": "REST API stands for Real-time Server Transport Application Programming Interface. It is an API designed for real-time data transfer between servers and clients.",
+					"correct": false
+				},
+				{
+					"answer": "REST API stands for Remote Execution and State Transfer Application Programming Interface. It is an API used for executing remote code on servers and transferring the application state between client and server.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Rest API: Serve and Fetch",
+			"question": "What is JSON and how do we use it?",
+			"answers": [
+				{
+					"answer": "JSON stands for JavaScript Object Notation. It is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.",
+					"correct": true
+				},
+				{
+					"answer": "JSON is a programming language used for front-end web development, and it is not used for data serialization or exchange.",
+					"correct": false
+				},
+				{
+					"answer": "JSON is used primarily for storing and querying data in relational databases, and it has limited use in web development.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Rest API: Serve and Fetch",
+			"question": "What is API versioning?",
+			"answers": [
+				{
+					"answer": "API versioning is the practice of maintaining different versions of an API to ensure backward compatibility when making changes to the API's functionality.",
+					"correct": true
+				},
+				{
+					"answer": "API versioning is the process of integrating multiple APIs into one comprehensive interface.",
+					"correct": false
+				},
+				{
+					"answer": "API versioning is only applicable to front-end web development and has no relevance to back-end development or API management.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Rest API: Serve and Fetch",
+			"question": "Give 3 examples of HTTP response status codes?",
+			"answers": [
+				{
+					"answer": "status code 200 means \"OK.\" It indicates the request was successful, and the server returned the requested data as the response.",
+					"correct": true
+				},
+				{
+					"answer": "status code 404 means \"Not Found.\" It indicates the server could not find the requested resource or endpoint.",
+					"correct": true
+				},
+				{
+					"answer": "status code 503 means \"Service Unavailable.\" It indicates the server is currently unable to handle the request due to maintenance or overload.",
+					"correct": true
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "How does the ternary operator look like in JavaScript?",
+			"answers": [
+				{
+					"answer": "The ternary operator in JavaScript looks like this: condition ? expressionIfTrue : expressionIfFalse. It is a concise way to write a simple conditional statement.",
+					"correct": true
+				},
+				{
+					"answer": "The ternary operator in JavaScript looks like this: condition ? expressionIfTrue. There is no need to specify the expression for the false case.",
+					"correct": false
+				},
+				{
+					"answer": "The ternary operator in JavaScript looks like this: condition ? expressionIfFalse : expressionIfTrue. The order of the expressions for true and false cases is reversed.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "How to import a function from another module in JavaScript?",
+			"answers": [
+				{
+					"answer": "To import a function from another module in JavaScript, you can use the import statement followed by the function name and the path to the module file.",
+					"correct": true
+				},
+				{
+					"answer": "To import a function from another module in JavaScript, you can use the require statement followed by the function name and the path to the module file.",
+					"correct": false
+				},
+				{
+					"answer": "To import a function from another module in JavaScript, you can use the export statement in the importing module to declare the function you want to use.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "What is a shallow copy on an object?",
+			"answers": [
+				{
+					"answer": "A shallow copy of an object creates a new object, but it only copies the references to the original object's properties. The properties themselves are not deeply cloned.",
+					"correct": true
+				},
+				{
+					"answer": "A shallow copy of an object creates an entirely new object with a deep copy of all the original object's properties.",
+					"correct": false
+				},
+				{
+					"answer": "A shallow copy of an object only creates a new reference to the same original object, without copying any properties.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "What is a callback function? Tell some examples of its usage.",
+			"answers": [
+				{
+					"answer": "A callback function is a function passed as an argument to another function, which is then executed at a later point in time, often after the completion of an asynchronous operation.",
+					"correct": true
+				},
+				{
+					"answer": "A callback function is a function that is executed immediately when it is defined, regardless of whether it's passed as an argument to another function or not.",
+					"correct": false
+				},
+				{
+					"answer": "A callback function is only used for synchronous operations and has no relevance to asynchronous tasks or event handling.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "What is object destructuring in JavaScript?",
+			"answers": [
+				{
+					"answer": "Object destructuring in JavaScript allows you to extract individual properties from an object and assign them to variables using a concise syntax.",
+					"correct": true
+				},
+				{
+					"answer": "Object destructuring in JavaScript only works with arrays, not with objects.",
+					"correct": false
+				},
+				{
+					"answer": "Object destructuring in JavaScript is used to create new objects by combining multiple existing objects into one.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "What is array destructuring in JavaScript?",
+			"answers": [
+				{
+					"answer": "Array destructuring in JavaScript allows you to unpack values from an array and assign them to variables using a concise syntax.",
+					"correct": true
+				},
+				{
+					"answer": "Array destructuring in JavaScript is only used for transforming arrays into strings.",
+					"correct": false
+				},
+				{
+					"answer": "Array destructuring in JavaScript is used to combine multiple arrays into a single array.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "What is the spread operator in `js`?",
+			"answers": [
+				{
+					"answer": "The spread operator in JavaScript (...) allows you to expand elements of an iterable (e.g., an array or object) into individual elements, making it easier to clone, merge, or pass elements as function arguments.",
+					"correct": true
+				},
+				{
+					"answer": "The spread operator in JavaScript is used to combine multiple arrays into a single array.",
+					"correct": false
+				},
+				{
+					"answer": "The spread operator in JavaScript is exclusive to arrays and cannot be used with objects or other iterables.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "What are the differences between the `arrow` function and the regular `function`?",
+			"answers": [
+				{
+					"answer": "The main difference between arrow functions and regular functions in JavaScript is the way they handle the this keyword. Arrow functions do not have their own this context; instead, they lexically capture the this value from the surrounding scope.",
+					"correct": true
+				},
+				{
+					"answer": "Arrow functions and regular functions have the same behavior with respect to the this keyword and how they handle scoping.",
+					"correct": false
+				},
+				{
+					"answer": "Arrow functions cannot be used as methods in objects, whereas regular functions can.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "What is the `import` keyword used for?",
+			"answers": [
+				{
+					"answer": "The import keyword is used in JavaScript for importing modules, functions, or objects from other files or dependencies into the current file.",
+					"correct": true
+				},
+				{
+					"answer": "The import keyword is used to define variables in JavaScript.",
+					"correct": false
+				},
+				{
+					"answer": "The import keyword is used to execute functions or methods in JavaScript.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "What is the `require` keyword used for?",
+			"answers": [
+				{
+					"answer": "The require keyword is used in Node.js to import modules or dependencies into a JavaScript file.",
+					"correct": true
+				},
+				{
+					"answer": "The require keyword is used to define variables in JavaScript.",
+					"correct": false
+				},
+				{
+					"answer": "The require keyword is used to execute functions or methods in JavaScript.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Advanced JavaScript",
+			"question": "What is the difference between the `let`, `const`, and `var` keywords for declaring variables in JavaScript?",
+			"answers": [
+				{
+					"answer": "The let and const keywords are block-scoped and allow you to declare variables that cannot be redeclared within the same scope. The let keyword allows reassigning values, while the const keyword creates read-only variables. The var keyword is function-scoped and allows redeclaring and updating variables within the same function.",
+					"correct": true
+				},
+				{
+					"answer": "The let keyword is used for declaring variables that cannot be reassigned, the const keyword allows variable reassignment, and the var keyword is used for declaring constants.",
+					"correct": false
+				},
+				{
+					"answer": "The let keyword creates global variables, the const keyword creates local variables, and the var keyword creates block-scoped variables.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React basics",
+			"question": "What benefits does it bring for a developer to use `components` (opposed to writing all the code in a single file)?",
+			"answers": [
+				{
+					"answer": "Using components allows for code reusability, making it easier for developers to maintain and update code across different parts of the application.",
+					"correct": true
+				},
+				{
+					"answer": "Components increase the complexity of the codebase and lead to reduced performance in the application.",
+					"correct": false
+				},
+				{
+					"answer": "Components eliminate the need for modularization, making it harder for developers to collaborate on large-scale projects.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React basics",
+			"question": "What is the difference between Element and Component?",
+			"answers": [
+				{
+					"answer": "An Element is a basic building block of a user interface in React, representing a single unit of the UI that can be rendered to the screen.",
+					"correct": true
+				},
+				{
+					"answer": "Element and Component are interchangeable terms in React, both referring to the same concept of user interface building blocks.",
+					"correct": false
+				},
+				{
+					"answer": "Elements are used in functional components, while Components are used in class components in React.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React basics",
+			"question": "How do you pass values between components in `react`?",
+			"answers": [
+				{
+					"answer": "In React, you can pass values between components using props. Props allow you to pass data from a parent component to its child components.",
+					"correct": true
+				},
+				{
+					"answer": "In React, passing values between components can only be achieved using global variables accessible across all components.",
+					"correct": false
+				},
+				{
+					"answer": "In React, you can use a state management library like Redux to pass values between components.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React basics",
+			"question": "What is `key` prop?",
+			"answers": [
+				{
+					"answer": "In React, the key prop is a special attribute used to uniquely identify elements in a list of components. It helps React efficiently update and re-render components when the list changes.",
+					"correct": true
+				},
+				{
+					"answer": "The key prop is used to define styles for a specific component in React.",
+					"correct": false
+				},
+				{
+					"answer": "The key prop is used to specify the order of components in a list, but it doesn't affect how React updates and re-renders them.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React basics",
+			"question": "How does a child component pass data to its parent component?",
+			"answers": [
+				{
+					"answer": "In React, a child component can pass data to its parent component by using callback functions. The parent component passes a function as a prop to the child component, and the child component can invoke this function with the data as an argument, allowing the parent to receive and handle the data.",
+					"correct": true
+				},
+				{
+					"answer": "In React, a child component cannot directly pass data to its parent component. Data flow is unidirectional, from parent to child, and any communication from child to parent requires using callback functions.",
+					"correct": false
+				},
+				{
+					"answer": "In React, a child component can pass data to its parent component by updating the parent's state directly, bypassing the use of callback functions or props.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React basics",
+			"question": "Write the code to create in JSX an HTML DIV element that has the innerText the contents of the variable `let name = 'Andrew'`.",
+			"answers": [
+				{
+					"answer": "const name = 'Andrew';\nconst MyComponent = () => {\n  return <div>{name}</div>;\n};\nexport default MyComponent;",
+					"correct": true
+				},
+				{
+					"answer": "const name = 'Andrew';\nconst MyComponent = () => {\n  return <DIV>{name}</DIV>;\n};\nexport default MyComponent;",
+					"correct": false
+				},
+				{
+					"answer": "const name = 'Andrew';\nconst MyComponent = () => {\n  return <div> name </div>;\n};\nexport default MyComponent;",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React basics",
+			"question": "Write the code to create in JSX an unordered list from the array `let names = [\"Mathew\", \"John\", \"Maverik\"]`.",
+			"answers": [
+				{
+					"answer": "const names = [\"Mathew\", \"John\", \"Maverik\"];\nconst MyComponent = () => {\n  return (\n    <ul>\n      {names.map((name, index) => (\n        <li key={index}>{name}</li>\n      ))}\n    </ul>\n  );\n};\nexport default MyComponent;",
+					"correct": true
+				},
+				{
+					"answer": "const names = [\"Mathew\", \"John\", \"Maverik\"];\nconst MyComponent = () => {\n  return (\n    <ul>\n      {names.map((name) => (\n        <li>{name}</li>\n      ))}\n    </ul>\n  );\n};\nexport default MyComponent;",
+					"correct": false
+				},
+				{
+					"answer": "const names = [\"Mathew\", \"John\", \"Maverik\"];\nconst MyComponent = () => {\n  return (\n    <ul>\n      {names.map((name, index) => \n        <li key={index}>{name}</li>\n      )}\n    </ul>\n  );\n};\nexport default MyComponent;",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React basics",
+			"question": "Write the code to set the background color red of a div in JSX.",
+			"answers": [
+				{
+					"answer": "const MyComponent = () => {\n  const divStyle = {\n    backgroundColor: 'red'\n  };\n  return (\n    <div style={divStyle}>\n      {/* Your content here */}\n    </div>\n  );\n};\nexport default MyComponent;",
+					"correct": true
+				},
+				{
+					"answer": "const MyComponent = () => {\n  const divStyle = {\n    Background-color: 'red'\n  };\n  return (\n    <div style={divStyle}>\n      {/* Your content here */}\n    </div>\n  );\n};\nexport default MyComponent;",
+					"correct": false
+				},
+				{
+					"answer": "const MyComponent = () => {\n  const divStyle = 'backgroundColor: red';\n  return (\n    <div style={divStyle}>\n      {/* Your content here */}\n    </div>\n  );\n};\nexport default MyComponent;",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Testing react",
+			"question": "What are unit tests, integration tests? What is the major difference between these two?",
+			"answers": [
+				{
+					"answer": "Unit tests are tests that focus on testing individual units or components of the code in isolation. They verify the correctness of small, independent parts of the code. Unit tests focus on individual units in isolation, while integration tests examine the interactions between multiple units when they work together.",
+					"correct": true
+				},
+				{
+					"answer": "Integration tests are tests that focus on testing individual units or components of the code in isolation. They verify the correctness of small, independent parts of the code.",
+					"correct": false
+				},
+				{
+					"answer": "The major difference between unit tests and integration tests is the level of isolation they provide. Unit tests isolate components, while integration tests do not provide any isolation and test components together as a whole.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Testing react",
+			"question": "What is unit testing?",
+			"answers": [
+				{
+					"answer": "Unit testing is a testing technique where individual units or components of a software application are tested in isolation to verify their correctness and functionality.",
+					"correct": true
+				},
+				{
+					"answer": "Unit testing is a testing technique that aims to test the entire application's functionality as a whole, covering all interactions between different units.",
+					"correct": false
+				},
+				{
+					"answer": "Unit testing is only relevant for manual testing and has no significance in automated testing or continuous integration processes.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Testing react",
+			"question": "What does `mocking` mean from a testing perspective? Give an example when you would use it.",
+			"answers": [
+				{
+					"answer": "Mocking, in a testing perspective, refers to the technique of creating fake or simulated objects to replace real dependencies or external components during testing.\nExample of using mocking:\nSuppose you are testing a function that makes an API call to an external service. To isolate the function from the actual API call during testing, you can create a mock API object that simulates the behavior of the real API and returns predefined data. This allows you to test the function's logic without making actual network requests.",
+					"correct": true
+				},
+				{
+					"answer": "Mocking is used to create actual instances of dependencies or external components during testing, ensuring the accuracy of test results.",
+					"correct": false
+				},
+				{
+					"answer": "Mocking is only applicable to unit tests and has no relevance in integration or end-to-end testing scenarios.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Testing react",
+			"question": "How do you test that a function was called at least 2 times using `jest`?",
+			"answers": [
+				{
+					"answer": "To test that a function was called at least 2 times using Jest, you can use the toHaveBeenCalled matcher in combination with the toHaveBeenCalledTimes matcher.",
+					"correct": true
+				},
+				{
+					"answer": "Jest does not provide any built-in matchers or methods to check if a function was called at least a certain number of times.",
+					"correct": false
+				},
+				{
+					"answer": "To test that a function was called at least 2 times, you can use the toHaveBeenCalled matcher without any additional count assertions.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Testing react",
+			"question": "Name 4 benefits a developer gets from writing tests.",
+			"answers": [
+				{
+					"answer": "Bug Detection and Prevention: Tests help identify and fix bugs early in the development process.\nCode Reliability and Maintainability: Tests ensure code behaves as intended, making it more reliable and easier to maintain.\nDocumentation and Code Understanding: Tests serve as living documentation, aiding in understanding the codebase.\nConfidence in Code Changes: With a comprehensive test suite, developers gain confidence to make changes and releases.",
+					"correct": true
+				},
+				{
+					"answer": "Instant Bug-Free Code: Writing tests guarantees bug-free code with no need for debugging.\nAutomated Refactoring: Tests automatically refactor and optimize code, saving development time.\n100% Test Coverage: Writing tests ensures complete coverage of all possible scenarios.\nEnhanced Code Flexibility: Tests improve code flexibility without any drawbacks.",
+					"correct": false
+				},
+				{
+					"answer": "Test-Automatic Collaboration: Tests automatically facilitate collaboration among team members.\nInstantaneous Development: Writing tests speeds up the development process with no overhead.\nSeamless Complexity Handling: Tests seamlessly handle complexity in any project.\nAuto-Generated Test Cases: Test cases are automatically generated without manual effort.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React patterns",
+			"question": "What is the difference between Real DOM and Virtual DOM?",
+			"answers": [
+				{
+					"answer": "The Real DOM is the actual tree-like structure that represents the current state of a web page, while the Virtual DOM is a lightweight copy of the Real DOM maintained by frontend libraries like React.",
+					"correct": true
+				},
+				{
+					"answer": "Real DOM and Virtual DOM serve the same purpose and are interchangeable concepts in web development.",
+					"correct": false
+				},
+				{
+					"answer": "The Real DOM is a virtual representation of a web page, and the Virtual DOM is the actual tree-like structure used by browsers to render web pages.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React patterns",
+			"question": "What is the purpose of using keys in lists when rendering multiple elements in React?",
+			"answers": [
+				{
+					"answer": "Keys in React lists help identify each element uniquely and assist React in efficiently updating and re-rendering elements when the list changes.",
+					"correct": true
+				},
+				{
+					"answer": "Keys in React lists improve the rendering performance by directly mapping elements to DOM nodes.",
+					"correct": false
+				},
+				{
+					"answer": "Keys in React lists are required when rendering multiple elements, but they have no impact on how React updates and re-renders the elements.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React patterns",
+			"question": "What is the purpose of using the `useEffect` hook in React?",
+			"answers": [
+				{
+					"answer": "The useEffect hook in React allows you to perform side effects in functional components, such as making API calls, subscribing to events, or updating the DOM, after rendering has occurred.",
+					"correct": true
+				},
+				{
+					"answer": "The useEffect hook in React is used to manage state in functional components and replace the need for class components.",
+					"correct": false
+				},
+				{
+					"answer": "The useEffect hook in React is only used for testing and has no practical application in production code.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React patterns",
+			"question": "What is prop drilling in React?",
+			"answers": [
+				{
+					"answer": "Prop drilling is a process in React where props are passed through multiple layers of components to reach a deeply nested child component that needs access to the data.",
+					"correct": true
+				},
+				{
+					"answer": "Prop drilling is the practice of passing props only from parent to immediate child components and avoiding passing them to deeply nested components.",
+					"correct": false
+				},
+				{
+					"answer": "Prop drilling refers to the automated process of passing props from parent to child components without the need for explicit prop declaration.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React patterns",
+			"question": "What is the purpose of using the `memo` function in React?",
+			"answers": [
+				{
+					"answer": "The memo function is used to optimize functional components in React by preventing unnecessary re-renders when the component's inputs (props) have not changed.",
+					"correct": true
+				},
+				{
+					"answer": "The memo function is used to create reusable React components that can be shared across different applications.",
+					"correct": false
+				},
+				{
+					"answer": "The memo function is used to memoize the output of expensive computations within a React component.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React patterns",
+			"question": "What is the purpose of using the `useReducer` hook in React?",
+			"answers": [
+				{
+					"answer": "The useReducer hook in React is an alternative to useState for managing complex state logic in functional components. It is useful when the state transitions follow a specific pattern or when the state depends on the previous state.",
+					"correct": true
+				},
+				{
+					"answer": "The useReducer hook in React is used to optimize the performance of functional components by reducing unnecessary re-renders.",
+					"correct": false
+				},
+				{
+					"answer": "The useReducer hook in React is a replacement for useEffect and is used to manage side effects in functional components.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React patterns",
+			"question": "What is the purpose of using the `useContext` hook in React?",
+			"answers": [
+				{
+					"answer": "The useContext hook in React allows functional components to consume data from a parent component's context without prop drilling, making it easier to share data between multiple components.",
+					"correct": true
+				},
+				{
+					"answer": "The useContext hook in React is used to manage state in functional components by providing them with direct access to a global state management system.",
+					"correct": false
+				},
+				{
+					"answer": "The useContext hook in React is used to create context providers for class components.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "React patterns",
+			"question": "What is the purpose of using the `useCallback` hook in React?",
+			"answers": [
+				{
+					"answer": "The useCallback hook in React is used to memoize functions and prevent unnecessary re-creations of function instances, which can lead to performance optimizations.",
+					"correct": true
+				},
+				{
+					"answer": "The useCallback hook in React is used to optimize the performance of class components by reducing the number of unnecessary renders.",
+					"correct": false
+				},
+				{
+					"answer": "The useCallback hook in React is used to define and manage stateful logic in functional components.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Mongo & mongoose ",
+			"question": "What is a database schema?",
+			"answers": [
+				{
+					"answer": "A database schema is a blueprint or design that defines the structure, organization, and relationships of the data in a database.",
+					"correct": true
+				},
+				{
+					"answer": "A database schema is a set of sample data used for testing and development purposes.",
+					"correct": false
+				},
+				{
+					"answer": "A database schema refers to the physical location where the database files are stored on the disk.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Mongo & mongoose ",
+			"question": "Why is the `id` unique in a database?",
+			"answers": [
+				{
+					"answer": "The id is unique in a database to serve as a primary key, ensuring each record has a unique identifier.",
+					"correct": true
+				},
+				{
+					"answer": "The id is not unique in a database; it can be repeated across different records.",
+					"correct": false
+				},
+				{
+					"answer": "The uniqueness of the id in a database depends on the specific database management system being used and is not a universal rule.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Mongo & mongoose ",
+			"question": "What are the advantages & disadvantages of using `lean()` function in a mongo query?",
+			"answers": [
+				{
+					"answer": "The advantage of using lean() in a MongoDB query is that it returns plain JavaScript objects instead of Mongoose documents, reducing memory usage and improving query performance.",
+					"correct": true
+				},
+				{
+					"answer": "Using lean() in a MongoDB query increases memory usage and slows down query performance.",
+					"correct": false
+				},
+				{
+					"answer": "The lean() function has no impact on memory usage or query performance in MongoDB.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Mongo & mongoose ",
+			"question": "Write the code to store the object `{name: \"Andrew\", age: 10}` to a mongo database. You can ignore the part of connection parameters.",
+			"answers": [
+				{
+					"answer": "const userSchema = new mongoose.Schema({\n  name: String,\n  age: Number\n});",
+					"correct": true
+				},
+				{
+					"answer": "const userSchema = new mongoose.Schema({\n  name: ‘String’,\n  age: Number\n});",
+					"correct": false
+				},
+				{
+					"answer": "const userSchema = new mongoose.Schema({\n [ name: string,\n  age: number ]\n});",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Mongo & mongoose ",
+			"question": "Write the code to delete from a mongo database all employees that are over 18 years. The scheme for an employee is `{name: string, age: int}`. You can ignore the part of connection parameters.",
+			"answers": [
+				{
+					"answer": "Employee.deleteMany({ age: { $gt: 18 } })\n  .then(result => {\n    console.log(`${result.deletedCount} employees deleted successfully.`);\n  })\n  .catch(error => {\n    console.error(\"Error while deleting employees:\", error);\n  });",
+					"correct": true
+				},
+				{
+					"answer": "Employee.deleteMany({ age: { $lt: 18 } })\n  .then(result => {\n    console.log(`${result.deletedCount} employees deleted successfully.`);\n  })\n  .catch(error => {\n    console.error(\"Error while deleting employees:\", error);\n  });",
+					"correct": false
+				},
+				{
+					"answer": "Employee.deleteMany({ age: { $eq: 18 } })\n  .then(result => {\n    console.log(`${result.deletedCount} employees deleted successfully.`);\n  })\n  .catch(error => {\n    console.error(\"Error while deleting employees:\", error);\n  });",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Mongo & mongoose ",
+			"question": "Write the code to display in the console from a mongo database the employees who are over 18 years. The scheme for an employee is `{name: string, age: int}`. You can ignore the part of connection parameters.",
+			"answers": [
+				{
+					"answer": "Employee.find({ age: { $gt: 18 } })\n  .then(employees => {\n    console.log(\"Employees over 18 years old:\");\n    employees.forEach(employee => {\n      console.log(`${employee.name} - ${employee.age} years`);\n    });\n  })\n  .catch(error => {\n    console.error(\"Error while fetching employees:\", error);\n  });",
+					"correct": true
+				},
+				{
+					"answer": "Employee.find({ age: { $lt: 18 } })\n  .then(employees => {\n    console.log(\"Employees over 18 years old:\");\n    employees.forEach(employee => {\n      console.log(`${employee.name} - ${employee.age} years`);\n    });\n  })\n  .catch(error => {\n    console.error(\"Error while fetching employees:\", error);\n  });",
+					"correct": false
+				},
+				{
+					"answer": "Employee.find({ age: { $eq: 18 } })\n  .then(employees => {\n    console.log(\"Employees over 18 years old:\");\n    employees.forEach(employee => {\n      console.log(`${employee.name} - ${employee.age} years`);\n    });\n  })\n  .catch(error => {\n    console.error(\"Error while fetching employees:\", error);\n  });",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "Mongo & mongoose ",
+			"question": "Write the code to update from a mongo database the employees with name='John' and set the new age to 8. The scheme for an employee is `{name: string, age: int}`. You can ignore the part of connection parameters.",
+			"answers": [
+				{
+					"answer": "Employee.updateMany({ name: 'John' }, { $set: { age: 8 } })\n  .then(result => {\n    console.log(`${result.nModified} employees updated successfully.`);\n  })\n  .catch(error => {\n    console.error(\"Error while updating employees:\", error);\n  });",
+					"correct": true
+				},
+				{
+					"answer": "Employee.updateMany({ name: 'John' }, { age: 8 })\n  .then(result => {\n    console.log(`${result.nModified} employees updated successfully.`);\n  })\n  .catch(error => {\n    console.error(\"Error while updating employees:\", error);\n  });",
+					"correct": false
+				},
+				{
+					"answer": "Employee.updateMany({ Name: 'John' }, { $set: { age: 8 } })\n  .then(result => {\n    console.log(`${result.nModified} employees updated successfully.`);\n  })\n  .catch(error => {\n    console.error(\"Error while updating employees:\", error);\n  });",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "MERN stack ",
+			"question": "What does `MERN` stand for in the context of web development?",
+			"answers": [
+				{
+					"answer": "MERN stands for MongoDB, Express, React, and Node.js. It is a popular stack used for building full-stack web applications.",
+					"correct": true
+				},
+				{
+					"answer": "MERN stands for MySQL, Express, React, and Node.js.",
+					"correct": false
+				},
+				{
+					"answer": "MERN stands for MongoDB, Ember.js, React, and Node.js.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "MERN stack ",
+			"question": "What is routing in the context of a `react` app?",
+			"answers": [
+				{
+					"answer": "Routing in the context of a React app refers to the process of navigating between different components or pages based on the URL or user interactions.",
+					"correct": true
+				},
+				{
+					"answer": "Routing in React is a mechanism to manage server-side routes and request handling.",
+					"correct": false
+				},
+				{
+					"answer": "Routing in React involves managing database queries and data retrieval for different components.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "MERN stack ",
+			"question": "What is routing in the context of an `express` app?",
+			"answers": [
+				{
+					"answer": "Routing in the context of an Express app refers to the process of defining endpoints and handling HTTP requests for different routes.",
+					"correct": true
+				},
+				{
+					"answer": "Routing in Express is a way to manage client-side navigation and page rendering for a React app.",
+					"correct": false
+				},
+				{
+					"answer": "Routing in Express involves handling database queries and data retrieval for different API routes.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "MERN stack ",
+			"question": "What is `CORS` policy?",
+			"answers": [
+				{
+					"answer": "CORS (Cross-Origin Resource Sharing) is a security policy implemented by web browsers to prevent unauthorized cross-origin requests, restricting web pages from making requests to a different domain than the one that served the page.",
+					"correct": true
+				},
+				{
+					"answer": "CORS is a policy that allows unrestricted cross-origin requests, enabling any website to access data from other domains without any restrictions.",
+					"correct": false
+				},
+				{
+					"answer": "CORS is a policy used to secure server-side API routes in an Express app, preventing unauthorized access to sensitive data.",
+					"correct": false
+				}
+			]
+		},
+		{
+			"theme": "MERN stack    ",
+			"question": "What advantages does a developer have for using `bootstrap` or `material ui`?",
+			"answers": [
+				{
+					"answer": "Using Bootstrap or Material UI provides pre-designed and responsive UI components, saving development time and effort.",
+					"correct": true
+				},
+				{
+					"answer": "Using Bootstrap or Material UI guarantees flawless design and user experience without any additional customization.",
+					"correct": false
+				},
+				{
+					"answer": "Using Bootstrap or Material UI makes the application automatically compatible with all browsers and devices.",
+					"correct": false
+				}
+			]
+		}
+	]
+}
