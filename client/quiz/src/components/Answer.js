@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import './Question.css';
+
 const Answer = (props) => {
   const randomQuestion = props.randomQuestion
 
@@ -46,38 +48,38 @@ useEffect(()=>{
 
   }
   return (
-    <>
+    <div className="answer-container">
     <div>
       {answer ? (
-        <div>
-          <h3>Answer</h3>
+        <div className="answer-card">
+          {/* <h3>Answer</h3> */}
           <p>{answer[0].answers[0].answer}</p>
         </div>
       ) : (
         <p>No answer available.</p>
       )}
     </div>
-    <div>
+    <div className="answer-card">
     {answer ? (
       <div>
-        <h3>Answer</h3>
+        {/* <h3>Answer</h3> */}
         <p>{answer[0].answers[1].answer}</p>
       </div>
     ) : (
       <p>No answer available.</p>
     )}
   </div>
-  <div>
+  <div className="answer-card">
   {answer ? (
     <div>
-      <h3>Answer</h3>
+      {/* <h3>Answer</h3> */}
       <p>{answer[0].answers[2].answer}</p>
     </div>
   ) : (
     <p>No answer available.</p>
   )}
 </div>
-</>
+</div>
   );
 }
 

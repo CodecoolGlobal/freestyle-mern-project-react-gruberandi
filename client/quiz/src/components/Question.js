@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Answer from './Answer';
+import './Question.css';
 
 const Question = () => {
   const [questions, setQuestions] = useState([]);
@@ -38,12 +39,12 @@ const Question = () => {
   }, [questions]);
 
   return (
-      <div>
+      <div className='question-container'>
       {randomQuestion ? (
           <div key={randomQuestion._id}>
-            <Answer randomQuestion = {randomQuestion} />
           <h2>{randomQuestion.question}</h2>
           <p>{randomQuestion.description}</p>
+            <Answer randomQuestion = {randomQuestion} />
         </div>
       ) : (
         <p>No questions available.</p>
