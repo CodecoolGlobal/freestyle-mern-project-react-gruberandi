@@ -51,9 +51,9 @@ const Answer = (props) => {
       })
 
   }
-if(!answer){
-  <>loading</>
-}
+  if (!answer) {
+    <>loading</>
+  }
 
   else if (answeredCorrectly === null) {
     return (
@@ -71,22 +71,25 @@ if(!answer){
     )
   }
 
-  else if (answeredCorrectly){
-    return(
+  else if (answeredCorrectly) {
+    return (
       <>
-     <div>congrats!</div>
-     <button>give me another question</button>
-     </> )
-  
+        <div>congrats!</div>
+        <button
+          onClick={() => { props.onNewQuestion(randomQuestion._id) }}>give me another question</button>
+      </>)
+
   }
 
   else {
 
-    return(
+    return (
       <>
-     <div>sorry, wrong answer</div>
-     <button>give me another question</button>
-     </> )
+        <div>sorry, wrong answer</div>
+        <button
+          onClick={() => { props.onNewQuestion(randomQuestion._id) }}
+        >give me another question</button>
+      </>)
   }
 
 }
