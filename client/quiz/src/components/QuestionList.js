@@ -26,9 +26,9 @@ const handleDelete = (id) => {
         .then((data) => setDeleted(data))
 }
 
-const addToFavorites = (question) => {
+const handleFavoriteClick = (question) => {
     const newObject = {...question}
-    newObject.isFavorite = true
+    newObject.isFavorite = !(newObject.isFavorite)
     console.log(newObject);
     fetch(`/api/question/update/${question._id}`, {
         method: "PATCH",
@@ -54,8 +54,15 @@ const addToFavorites = (question) => {
                     <div>
                         <h2>{question.question}</h2>
                         <h2>{question.theme}</h2>
-                        {(question.isFavorite ? <div>❤️</div> :                         
-                        <button onClick={() => addToFavorites(question)}>Add to Fav</button>)}
+                        {(question.isFavorite ? (
+												<div>
+													<p>❤️</p>
+													<button onClick={() => handleFavoriteClick(question)}>
+														Remove from favorites														
+													</button>
+												</div>
+												) :                         
+                        <button onClick={() => handleFavoriteClick(question)}>Add to favorites</button>)}
                         
 
                         <button onClick={() => handleDelete(question._id)}>Delete</button>
