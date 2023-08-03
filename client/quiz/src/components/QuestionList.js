@@ -4,7 +4,9 @@ const QuestionList = () => {
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [deleted, setDeleted] = useState([])
-    const [favorit, setFavorit] = useState([])
+    const [favorite, setFavorite] = useState([])
+
+		const favoriteSymbol = '❤️';
 
     useEffect(() => {
         fetch('/api/question/all')
@@ -13,7 +15,7 @@ const QuestionList = () => {
                 setQuestions(fetchedQuestions);
                 setLoading(false);
             })
-    }, [deleted, favorit]);
+    }, [deleted, favorite]);
 
 const handleDelete = (id) => {
     fetch(`/api/question/delete/${id}`, {
@@ -38,7 +40,7 @@ const handleFavoriteClick = (question) => {
         body: JSON.stringify({...newObject})
     })
         .then ((res) => res.json())
-        .then((data) => setFavorit(data))
+        .then((data) => setFavorite(data))
 }
 
     if (loading) {
@@ -53,18 +55,16 @@ const handleFavoriteClick = (question) => {
                 return (
                     <div>
                         <h2>{question.question}</h2>
-                        <h2>{question.theme}</h2>
+                        <p>Theme: {question.theme}</p>
                         {(question.isFavorite ? (
 												<div>
-													<p>❤️</p>
+													<p>{favoriteSymbol}</p>
 													<button onClick={() => handleFavoriteClick(question)}>
 														Remove from favorites														
 													</button>
 												</div>
 												) :                         
                         <button onClick={() => handleFavoriteClick(question)}>Add to favorites</button>)}
-                        
-
                         <button onClick={() => handleDelete(question._id)}>Delete</button>
 
                     </div>
