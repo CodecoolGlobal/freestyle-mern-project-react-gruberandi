@@ -28,7 +28,22 @@ const handleDelete = (id) => {
 
 const addToFavorites = (question) => {
     const newObject = {...question}
-    newObject.isFavorite = true
+    newObject.isFavorite = true;
+    console.log(newObject);
+    fetch(`/api/question/update/${question._id}`, {
+        method: "PATCH",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({...newObject})
+    })
+        .then ((res) => res.json())
+        .then((data) => setFavorit(data))
+}
+
+const removeFromFavourites = (question) => {
+    const newObject = {...question}
+    newObject.isFavorite = false;
     console.log(newObject);
     fetch(`/api/question/update/${question._id}`, {
         method: "PATCH",
@@ -54,7 +69,7 @@ const addToFavorites = (question) => {
                     <div>
                         <h2>{question.question}</h2>
                         <h2>{question.theme}</h2>
-                        {(question.isFavorite ? <div>❤️</div> :                         
+                        {(question.isFavorite ? <><div>❤️</div> <button onClick={() => removeFromFavourites(question)}>Remove from Fav</button></> :                         
                         <button onClick={() => addToFavorites(question)}>Add to Fav</button>)}
                         
 
