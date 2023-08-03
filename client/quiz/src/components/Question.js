@@ -1,3 +1,13 @@
+const Question = ({randomQuestion})=>{
+
+  return(
+    <div key={randomQuestion._id}>
+    <h2>{randomQuestion.question}</h2>
+    <p>{randomQuestion.description}</p>
+  </div>
+  )
+  
+}
 import React, { useState, useEffect } from 'react';
 import Answer from './Answer';
 import './Question.css';

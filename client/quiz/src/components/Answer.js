@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
 import './Question.css';
 
+import AnswerPart from "./AnswerPart";
 const Answer = (props) => {
   const randomQuestion = props.randomQuestion
 
   const [answer, setAnswer] = useState(null)
   const [answerOrder, setAnswerOrder] = useState(null);
+  const [answeredCorrectly, setAnswereredCorrectly] = useState(null);
+
+  const handleAnswer = (bool) => {
+    setAnswereredCorrectly(bool);
+  }
 
   const randomizeAnswers = () => {
     const refArr = [0, 1, 2];
@@ -17,9 +23,9 @@ const Answer = (props) => {
     }
     return randomArr
   }
-useEffect(()=>{
-  setAnswerOrder(randomizeAnswers());
-},[randomQuestion]);
+  useEffect(() => {
+    setAnswerOrder(randomizeAnswers());
+  }, [randomQuestion]);
 
 
   useEffect(() => {
@@ -47,40 +53,37 @@ useEffect(()=>{
       })
 
   }
-  return (
-    <div className="answer-container">
-    <div>
-      {answer ? (
-        <div className="answer-card">
-          {/* <h3>Answer</h3> */}
-          <p>{answer[0].answers[0].answer}</p>
-        </div>
-      ) : (
-        <p>No answer available.</p>
-      )}
-    </div>
-    <div className="answer-card">
-    {answer ? (
-      <div>
-        {/* <h3>Answer</h3> */}
-        <p>{answer[0].answers[1].answer}</p>
-      </div>
-    ) : (
-      <p>No answer available.</p>
-    )}
-  </div>
-  <div className="answer-card">
-  {answer ? (
-    <div>
-      {/* <h3>Answer</h3> */}
-      <p>{answer[0].answers[2].answer}</p>
-    </div>
-  ) : (
-    <p>No answer available.</p>
-  )}
-</div>
-</div>
-  );
+if(!answer){
+  <>loading</>
+}
+
+  else if (answeredCorrectly === null) {
+    return (
+      <>
+        <AnswerPart
+          answer={answer[0].answers[answerOrder[0]]}
+          onAnswer={handleAnswer} />
+        <AnswerPart
+          answer={answer[0].answers[answerOrder[1]]}
+          onAnswer={handleAnswer} />
+        <AnswerPart
+          answer={answer[0].answers[answerOrder[2]]}
+          onAnswer={handleAnswer} />
+      </>
+    )
+  }
+
+  else if (answeredCorrectly){
+    return <div>congrats!</div>
+
+  
+  }
+
+  else {
+
+    return <div>sorry, wrong answer</div>
+  }
+
 }
 
 export default Answer;
