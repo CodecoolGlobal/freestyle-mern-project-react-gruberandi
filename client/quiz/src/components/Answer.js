@@ -74,14 +74,21 @@ if(!answer){
   }
 
   else if (answeredCorrectly){
-    return <div>congrats!</div>
-
+    return(
+      <>
+     <div>congrats!</div>
+     <button>give me another question</button>
+     </> )
   
   }
 
   else {
 
-    return <div>sorry, wrong answer</div>
+    return(
+      <>
+     <div>sorry, wrong answer</div>
+     <button>give me another question</button>
+     </> )
   }
 
 }
