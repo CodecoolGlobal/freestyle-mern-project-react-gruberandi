@@ -6,38 +6,32 @@ const workbook = require('./workbook.json');
 const mongoURL = 'mongodb+srv://PAlet:1234@cluster0.mxdljml.mongodb.net/';
 
 const populate = async () => {
-    
+
     await QuestionModel.deleteMany({});
     await AnwserModel.deleteMany({});
 
-    const allQuestions = [];
     const allAnswers = [];
 
-    workbook.questions.forEach((curr, id) => {
-        allQuestions.push(
-            {
-                _id: id,
-                theme: curr.theme,
-                question: curr.question,
-                timesAsked: 0,
-                answeredCorrectly: 0,
-                comments: [],
-                isFavorite: false,
-            }
-            );
+    const createPromises = workbook.questions.map(async (curr) => {
+        const created = await QuestionModel.create({
+            theme: curr.theme,
+            question: curr.question,
+            timesAsked: 0,
+            answeredCorrectly: 0,
+            comments: [],
+            isFavorite: false,
+        });
         allAnswers.push(
             {
-                _id: id,
                 answers: [...curr.answers],
-                answersWhichQuestion: id,
+                answersWhichQuestion: created._id,
             }
-            );
+        );
     });
 
-		await QuestionModel.create(...allQuestions);
-		console.log('Added Questions');
-		await AnwserModel.create(...allAnswers);
-		console.log('Added Answers');
+    await Promise.all(createPromises);
+    await AnwserModel.create(...allAnswers);
+    console.log('Added Answers');
 }
 
 const main = async () => {
@@ -49,5 +43,4 @@ const main = async () => {
 main().catch((error) => {
     console.error(error);
     process.exit(1);
-  });
-  
+});

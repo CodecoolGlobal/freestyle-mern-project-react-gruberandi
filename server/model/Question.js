@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 const questionSchema = new Schema({
     
-    _id: Number,
     theme: String,
     question: String,
     timesAsked: Number,

@@ -17,7 +17,7 @@ const Question = () => {
         return response.json();
       })
       .then((data) => { 
-        console.log(data)
+       
         setQuestions(data);
       })
       .catch((error) => {
