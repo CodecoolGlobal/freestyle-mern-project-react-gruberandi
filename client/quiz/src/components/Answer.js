@@ -1,11 +1,22 @@
 import { useState, useEffect } from "react";
 import AnswerPart from "./AnswerPart";
 const Answer = (props) => {
+  const [comment, setComment] = useState('');
   const randomQuestion = props.randomQuestion
 
   const [answer, setAnswer] = useState(null)
   const [answerOrder, setAnswerOrder] = useState(null);
   const [answeredCorrectly, setAnswereredCorrectly] = useState(null);
+
+  const sendComment=(id, comment) => {
+    const newQuestion = { ...randomQuestion };
+    newQuestion.comments.push({
+      commentText: comment,
+      dateAdded: new Date(Date.now())
+    });
+
+    fetch(`/api/question/update/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newQuestion) })
+  }
 
   const handleAnswer = (bool) => {
     setAnswereredCorrectly(bool);
@@ -87,8 +98,19 @@ const Answer = (props) => {
       <>
         <div>sorry, wrong answer</div>
         <button
-          onClick={() => { setAnswereredCorrectly(null);props.onNewQuestion(randomQuestion._id) }}
+          onClick={() => { setAnswereredCorrectly(null); props.onNewQuestion(randomQuestion._id) }}
         >give me another question</button>
+        <div>
+          <div>you can add a comment to this question:</div>
+          <input
+            onChange={(e) => { setComment(e.target.value) }} value={comment}></input>
+          <button
+
+          onClick={()=>{console.log(randomQuestion._id); sendComment(randomQuestion._id, comment )}}
+          >Submit comment</button>
+
+        </div>
+
       </>)
   }
 
