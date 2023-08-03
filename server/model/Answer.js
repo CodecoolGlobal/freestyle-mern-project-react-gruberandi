@@ -7,7 +7,7 @@ const answerSchema = new Schema({
         answer: String,
         correct: Boolean,
     }],
-    answersWhichQuestion: {type: Number, ref: 'Question'},
+    answersWhichQuestion: {type: Schema.Types.ObjectId, ref: 'Question'},
     //Schema.Types.ObjectId
     });
     
