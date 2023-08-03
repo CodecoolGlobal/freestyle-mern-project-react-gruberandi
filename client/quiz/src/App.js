@@ -9,11 +9,15 @@ import {useState} from 'react';
 function App() {
 const [page, setPage] = useState('quiz');
 
+function switchPage(page){
+  setPage(page)
+}
+
 switch (page) {
   case 'quiz':
     return (
       <div>
-    <NavBar/>
+    <NavBar switchPage={switchPage} />
    <Quiz/>
   
       </div>
@@ -22,7 +26,7 @@ switch (page) {
     case 'list':
       return(
         <div>
-    <NavBar/>
+    <NavBar switchPage={switchPage}/>
    <QuestionList/>
   
       </div>
