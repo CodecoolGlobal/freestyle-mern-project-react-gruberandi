@@ -76,7 +76,7 @@ const Answer = (props) => {
       <>
         <div>congrats!</div>
         <button
-          onClick={() => { props.onNewQuestion(randomQuestion._id) }}>give me another question</button>
+          onClick={() => { setAnswereredCorrectly(null); props.onNewQuestion(randomQuestion._id) }}>give me another question</button>
       </>)
 
   }
@@ -87,7 +87,7 @@ const Answer = (props) => {
       <>
         <div>sorry, wrong answer</div>
         <button
-          onClick={() => { props.onNewQuestion(randomQuestion._id) }}
+          onClick={() => { setAnswereredCorrectly(null);props.onNewQuestion(randomQuestion._id) }}
         >give me another question</button>
       </>)
   }
