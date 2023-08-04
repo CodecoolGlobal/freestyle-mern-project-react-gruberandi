@@ -4,7 +4,7 @@ const QuestionList = () => {
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [deleted, setDeleted] = useState([])
-    const [favorite, setFavorite] = useState([])
+    const [favorite, setFavorit] = useState([])
 
 		const favoriteSymbol = '❤️';
 
