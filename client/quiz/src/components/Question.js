@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Answer from './Answer';
-import './Question.css';
+// import './Question.css';
 
 const Question = () => {
   const [questions, setQuestions] = useState([]);
