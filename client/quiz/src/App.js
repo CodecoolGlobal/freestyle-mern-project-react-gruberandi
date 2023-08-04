@@ -1,6 +1,6 @@
 import Question from './components/Question';
 import Answer from './components/Answer';
-import './App.css';
+// import './App.css';
 import QuestionList from './components/QuestionList';
 import Quiz from './components/Quiz';
 import NavBar from './components/NavBar';

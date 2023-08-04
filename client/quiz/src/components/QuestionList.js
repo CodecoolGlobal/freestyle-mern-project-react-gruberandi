@@ -31,7 +31,6 @@ const handleDelete = (id) => {
 const handleFavoriteClick = (question) => {
     const newObject = {...question}
     newObject.isFavorite = !(newObject.isFavorite)
-    console.log(newObject);
     fetch(`/api/question/update/${question._id}`, {
         method: "PATCH",
         headers:{
@@ -40,7 +39,7 @@ const handleFavoriteClick = (question) => {
         body: JSON.stringify({...newObject})
     })
         .then ((res) => res.json())
-        .then((data) => setFavorite(data))
+        .then((data) => setFavorit(data))
 }
 
     if (loading) {
