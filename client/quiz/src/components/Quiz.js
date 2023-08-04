@@ -8,13 +8,11 @@ const Quiz = () => {
     const [randomIndex, setRandomIndex] = useState('');
     const [previousQuestions, setPreviousQuestions] = useState([]);
 
-    const handleNewQuestion=(id)=>{
+    const handleNewQuestion = (id) => {
         const newList = [...previousQuestions];
         newList.push(id);
         setPreviousQuestions(newList);
     }
-
-
 
     const fetchQuestions = () => {
         fetch('/api/question/all')
@@ -25,7 +23,6 @@ const Quiz = () => {
                 return response.json();
             })
             .then((data) => {
-console.log(data);
                 setQuestions(data);
             })
             .catch((error) => {
@@ -41,28 +38,27 @@ console.log(data);
         if (questions.length > 0) {
             const randomIndexes = Math.floor(Math.random() * questions.length);
             setRandomIndex(randomIndexes);
-            setRandomQuestion(questions[randomIndexes]);
+            setRandomQuestion({...questions[randomIndexes]});
         }
     }, [questions, previousQuestions]);
 
 
-    if(randomQuestion){
-        console.log(randomQuestion)
-    return (
-        <div>
-            <Question randomQuestion={randomQuestion}/>
+    if (randomQuestion) {
+        return (
+            <div>
+                <Question randomQuestion={randomQuestion}/>
 
-            <Answer randomQuestion={randomQuestion} onNewQuestion={handleNewQuestion}/>
-        </div>
+                <Answer randomQuestion={randomQuestion} onNewQuestion={handleNewQuestion} />
+            </div>
 
 
-    );
+        );
     }
 
 
-        return (
-            <div>loading</div>
-        )
+    return (
+        <div>loading</div>
+    )
 
 };
 

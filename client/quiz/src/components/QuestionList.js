@@ -4,7 +4,9 @@ const QuestionList = () => {
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [deleted, setDeleted] = useState([])
-    const [favorit, setFavorit] = useState([])
+    const [favorite, setFavorite] = useState([])
+
+		const favoriteSymbol = '❤️';
 
     useEffect(() => {
         fetch('/api/question/all')
@@ -13,7 +15,7 @@ const QuestionList = () => {
                 setQuestions(fetchedQuestions);
                 setLoading(false);
             })
-    }, [deleted, favorit]);
+    }, [deleted, favorite]);
 
 const handleDelete = (id) => {
     fetch(`/api/question/delete/${id}`, {
@@ -26,25 +28,9 @@ const handleDelete = (id) => {
         .then((data) => setDeleted(data))
 }
 
-const addToFavorites = (question) => {
+const handleFavoriteClick = (question) => {
     const newObject = {...question}
-    newObject.isFavorite = true;
-    console.log(newObject);
-    fetch(`/api/question/update/${question._id}`, {
-        method: "PATCH",
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({...newObject})
-    })
-        .then ((res) => res.json())
-        .then((data) => setFavorit(data))
-}
-
-const removeFromFavourites = (question) => {
-    const newObject = {...question}
-    newObject.isFavorite = false;
-    console.log(newObject);
+    newObject.isFavorite = !(newObject.isFavorite)
     fetch(`/api/question/update/${question._id}`, {
         method: "PATCH",
         headers:{
@@ -68,11 +54,16 @@ const removeFromFavourites = (question) => {
                 return (
                     <div>
                         <h2>{question.question}</h2>
-                        <h2>{question.theme}</h2>
-                        {(question.isFavorite ? <><div>❤️</div> <button onClick={() => removeFromFavourites(question)}>Remove from Fav</button></> :                         
-                        <button onClick={() => addToFavorites(question)}>Add to Fav</button>)}
-                        
-
+                        <p>Theme: {question.theme}</p>
+                        {(question.isFavorite ? (
+												<div>
+													<p>{favoriteSymbol}</p>
+													<button onClick={() => handleFavoriteClick(question)}>
+														Remove from favorites														
+													</button>
+												</div>
+												) :                         
+                        <button onClick={() => handleFavoriteClick(question)}>Add to favorites</button>)}
                         <button onClick={() => handleDelete(question._id)}>Delete</button>
 
                     </div>

@@ -7,7 +7,6 @@ const answerSchema = new Schema({
         correct: Boolean,
     }],
     answersWhichQuestion: {type: Schema.Types.ObjectId, ref: 'Question'},
-    //Schema.Types.ObjectId
     });
     
     const Answer = model('Answer', answerSchema);

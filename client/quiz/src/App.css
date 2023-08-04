@@ -25,8 +25,10 @@
 }
 
 .answer-card {
-  width: 200px;
-  height: 100px;
+  /* width: 200px;
+  height: 100px; */
+  display: flex;
+  justify-content: space-around;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
