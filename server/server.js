@@ -82,6 +82,7 @@ app.get('/api/question/sort/', async (req, res, next) => {
 
 
   app.patch("/api/question/update/:id", async (req, res, next) => {
+    console.log(req.body);
     try {
       const question = await QuestionModel.findByIdAndUpdate(
         req.params.id,

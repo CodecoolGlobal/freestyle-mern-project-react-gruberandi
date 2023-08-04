@@ -91,7 +91,7 @@ const Answer = (props) => {
       <>
         <div>congrats!</div>
         <button
-          onClick={() => { setAnswereredCorrectly(null); props.onNewQuestion(randomQuestion._id) }}>give me another question</button>
+          onClick={() => { setAnswereredCorrectly(null); props.onNewQuestion(randomQuestion._id);setCommentsShow(false); }}>give me another question</button>
           <button onClick={() => {setCommentsShow(true)}}>Show Comments</button>
           <Comment question={randomQuestion} commentsShow={commentsShow}/>
       </>)
@@ -104,7 +104,7 @@ const Answer = (props) => {
       <>
         <div>sorry, wrong answer</div>
         <button
-          onClick={() => { setAnswereredCorrectly(null); props.onNewQuestion(randomQuestion._id) }}
+          onClick={() => { setAnswereredCorrectly(null); props.onNewQuestion(randomQuestion._id); setCommentsShow(false); }}
         >give me another question</button>
         <div>
           <div>you can add a comment to this question:</div>
