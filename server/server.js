@@ -157,7 +157,7 @@ app.get('/api/question/sort/', async (req, res, next ) => {
 
   app.get("/api/answer/getOne/:id", async (req, res, next) => {
     try {
-      const answer = await AnswerModel.find({answersWhichQuestion: req.params.id});
+      const answer = await AnswerModel.findOne({answersWhichQuestion: req.params.id});
       res.json(answer);
     } catch (err) {
      return next(err);

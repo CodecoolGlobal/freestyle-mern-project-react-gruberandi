@@ -7,11 +7,11 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
 
   const [comment, setComment] = useState('');
   const [answer, setAnswer] = useState(null)
-  const [answerOrder, setAnswerOrder] = useState(null);
+  const [randomAnswers, setRandomAnswers] = useState(null);
   const [answeredCorrectly, setAnswereredCorrectly] = useState(null);
   const [showComments, setShowComments] = useState(false);
 
-  const sendComment=(id, comment) => {
+  const sendComment = (id, comment) => {
     const newQuestion = { ...randomQuestion };
     newQuestion.comments.push({
       commentText: comment,
@@ -25,8 +25,8 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     setAnswereredCorrectly(bool);
   }
 
-  const randomizeAnswers = () => {
-    const refArr = [0, 1, 2];
+  const randomizeAnswers = (answersArray) => {
+    const refArr = [...answersArray];
 
     const randomArr = [];
     while (refArr.length > 0) {
@@ -35,34 +35,28 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     }
     return randomArr
   }
+
   useEffect(() => {
-    setAnswerOrder(randomizeAnswers());
+    const task = async () => {
+      if (randomQuestion !== '') {
+        const randAnswer = await fetchAnswer(randomQuestion._id)
+        setAnswer(randAnswer);
+        setRandomAnswers(randomizeAnswers(randAnswer.answers));
+      }
+    }
+    task();
   }, [randomQuestion]);
 
 
   useEffect(() => {
-    if (randomQuestion !== '') {
-      fetchAnswer(randomQuestion._id)
-    }
+
   }, [randomQuestion])
 
-  const fetchAnswer = (id) => {
-    fetch(`/api/answer/getOne/${id}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Network response was not ok')
-        }
-        return res.json()
-      })
-      .then((data) => {
-        console.log(data);
-        setAnswer(data)
-      })
-      .catch((error) => {
-        console.error('Error fetching answer:', error);
-      })
-
+  const fetchAnswer = async (id) => {
+    const response = await fetch(`/api/answer/getOne/${id}`);
+    return response.json();
   }
+
   if (!answer) {
     <>loading</>
   }
@@ -70,15 +64,15 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
   else if (answeredCorrectly === null) {
     return (
       <div className="answer-container">
-        <AnswerPart
-          answer={answer[0].answers[answerOrder[0]]}
-          onAnswer={handleAnswer} />
-        <AnswerPart
-          answer={answer[0].answers[answerOrder[1]]}
-          onAnswer={handleAnswer} />
-        <AnswerPart
-          answer={answer[0].answers[answerOrder[2]]}
-          onAnswer={handleAnswer} />
+        {randomAnswers.map((answer) => {
+          return (
+            <AnswerPart
+              key={answer._id}
+              answer={answer}
+              onAnswer={handleAnswer} />
+          )
+        })}
+
       </div>
     )
   }
@@ -88,16 +82,16 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
       <>
         <div>congrats!</div>
         <button
-          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id);setShowComments(false); }}>give me another question</button>
-          <button onClick={() => {setShowComments(!showComments)}}>Show Comments</button>
-          <div>you can add a comment to this question:</div>
-          <input
-            onChange={(e) => { setComment(e.target.value) }} value={comment}></input>
-          <button
+          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id); setShowComments(false); }}>give me another question</button>
+        <button onClick={() => { setShowComments(!showComments) }}>Show Comments</button>
+        <div>you can add a comment to this question:</div>
+        <input
+          onChange={(e) => { setComment(e.target.value) }} value={comment}></input>
+        <button
 
-          onClick={()=>{console.log(randomQuestion._id); sendComment(randomQuestion._id, comment )}}
-          >Submit comment</button>
-          <Comment question={randomQuestion} showComments={showComments}/>
+          onClick={() => { console.log(randomQuestion._id); sendComment(randomQuestion._id, comment) }}
+        >Submit comment</button>
+        <Comment question={randomQuestion} showComments={showComments} />
       </>)
 
   }
@@ -116,10 +110,10 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
             onChange={(e) => { setComment(e.target.value) }} value={comment}></input>
           <button
 
-          onClick={()=>{console.log(randomQuestion._id); sendComment(randomQuestion._id, comment )}}
+            onClick={() => { console.log(randomQuestion._id); sendComment(randomQuestion._id, comment) }}
           >Submit comment</button>
-          <button onClick={() => {setShowComments(!showComments)}}>Show Comments</button>
-          <Comment question={randomQuestion} showComments={showComments}/>
+          <button onClick={() => { setShowComments(!showComments) }}>Show Comments</button>
+          <Comment question={randomQuestion} showComments={showComments} />
         </div>
 
       </>)
