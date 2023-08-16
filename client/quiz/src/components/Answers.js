@@ -11,6 +11,17 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
   const [answeredCorrectly, setAnswereredCorrectly] = useState(null);
   const [showComments, setShowComments] = useState(false);
 
+  useEffect(() => {
+    const task = async () => {
+      if (randomQuestion !== '') {
+        const randAnswer = await fetchAnswer(randomQuestion._id)
+        setAnswer(randAnswer);
+        setRandomAnswers(randomizeAnswers(randAnswer.answers));
+      }
+    }
+    task();
+  }, [randomQuestion]);
+
   const sendComment = (id, comment) => {
     const newQuestion = { ...randomQuestion };
     newQuestion.comments.push({
@@ -36,29 +47,13 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     return randomArr
   }
 
-  useEffect(() => {
-    const task = async () => {
-      if (randomQuestion !== '') {
-        const randAnswer = await fetchAnswer(randomQuestion._id)
-        setAnswer(randAnswer);
-        setRandomAnswers(randomizeAnswers(randAnswer.answers));
-      }
-    }
-    task();
-  }, [randomQuestion]);
-
-
-  useEffect(() => {
-
-  }, [randomQuestion])
-
   const fetchAnswer = async (id) => {
     const response = await fetch(`/api/answer/${id}`);
     return response.json();
   }
 
   if (!answer) {
-    <>loading</>
+    <>loading...</>
   }
 
   else if (answeredCorrectly === null) {
@@ -72,7 +67,6 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
               onAnswer={handleAnswer} />
           )
         })}
-
       </div>
     )
   }
@@ -115,7 +109,6 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
           <button onClick={() => { setShowComments(!showComments) }}>Show Comments</button>
           <Comment question={randomQuestion} showComments={showComments} />
         </div>
-
       </>)
   }
 
