@@ -5,7 +5,6 @@ import Question from './Question';
 const Quiz = () => {
 	const [questions, setQuestions] = useState([]);
 	const [randomQuestion, setRandomQuestion] = useState(null);
-	const [randomIndex, setRandomIndex] = useState('');
 	const [previousQuestions, setPreviousQuestions] = useState([]);
 
 	const handleNewQuestion = (id) => {
@@ -37,11 +36,9 @@ const Quiz = () => {
 	useEffect(() => {
 		if (questions.length > 0) {
 			const randomIndexes = Math.floor(Math.random() * questions.length);
-			setRandomIndex(randomIndexes);
 			setRandomQuestion({ ...questions[randomIndexes] });
 		}
 	}, [questions, previousQuestions]);
-
 
 	if (randomQuestion) {
 		return (
