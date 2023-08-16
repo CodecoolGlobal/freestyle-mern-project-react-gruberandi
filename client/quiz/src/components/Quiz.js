@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Answer from './Answer';
+import Answers from './Answers';
 import Question from './Question';
 
 const Quiz = () => {
@@ -48,7 +48,7 @@ const Quiz = () => {
             <div>
                 <Question randomQuestion={randomQuestion}/>
 
-                <Answer randomQuestion={randomQuestion} onNewQuestion={handleNewQuestion} />
+                <Answers randomQuestion={randomQuestion} onNewQuestion={handleNewQuestion} />
             </div>
 
 
