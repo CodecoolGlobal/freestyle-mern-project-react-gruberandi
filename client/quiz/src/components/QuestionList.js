@@ -39,7 +39,7 @@ const handleFavoriteClick = (question) => {
         body: JSON.stringify({...newObject})
     })
         .then ((res) => res.json())
-        .then((data) => setFavorit(data))
+        .then((data) => setFavorite(data))
 }
 
     if (loading) {
