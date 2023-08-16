@@ -83,8 +83,11 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
           onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id) }}>give me another question</button>
         <button onClick={toggleComments}>Show Comments</button>
         <div>You can add a comment to this question:</div>
-        <input
-          onChange={(e) => { setComment(e.target.value) }} value={comment}></input>
+        <textarea
+          onChange={(e) => { setComment(e.target.value) }}
+          value={comment}
+          >
+          </textarea>
         <button
           onClick={() => { console.log(randomQuestion._id); sendComment(randomQuestion._id, comment) }}
         >Submit comment</button>
@@ -99,12 +102,15 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
       <>
         <div>sorry, wrong answer</div>
         <button
-          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id);}}
+          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id); }}
         >give me another question</button>
         <div>
           <div>you can add a comment to this question:</div>
-          <input
-            onChange={(e) => { setComment(e.target.value) }} value={comment}></input>
+          <textarea
+            onChange={(e) => { setComment(e.target.value) }}
+            value={comment}
+          >
+          </textarea>
           <button
 
             onClick={() => { console.log(randomQuestion._id); sendComment(randomQuestion._id, comment) }}
