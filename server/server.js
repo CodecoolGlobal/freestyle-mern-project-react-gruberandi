@@ -6,7 +6,6 @@ const QuestionModel = require("./model/Question");
 const app = express();
 app.use(express.json())
 
-
 //MongoDB import
 const mongoURL = 'mongodb+srv://PAlet:1234@cluster0.mxdljml.mongodb.net/';
 
@@ -38,6 +37,23 @@ mongoose
     }
   });
   
+  app.get("/api/stats/", async (req, res) => {
+    const stats = {
+      asked: 0,
+      correct: 0,
+      ratio: 0,
+    }
+
+    const questions = await QuestionModel.find({})
+    for (question of questions) {
+      stats.asked += question.timesAsked;
+      stats.correct += question.answeredCorrectly;
+    };
+
+    stats.ratio = (stats.correct / stats.asked).toPrecision(2);  
+    res.json(stats);
+  });
+
   app.post("/api/question/", async (req, res, next) => {
     try {
       const saved = await QuestionModel.create(req.body);
@@ -86,7 +102,7 @@ mongoose
 
   app.delete("/api/answer/:id", async (req, res, next) => {
     try {
-      const deletedAnswer = await AnswerModel.findByIdAndDelete(req.params.id);
+      const deletedAnswer = await AnswerModel.findOneAndDelete({answersWhichQuestion: req.params.id});
       return res.json(deletedAnswer);
     } catch (err) {
       return next(err);
