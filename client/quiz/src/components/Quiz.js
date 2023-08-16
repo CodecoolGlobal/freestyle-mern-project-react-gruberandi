@@ -15,7 +15,7 @@ const Quiz = () => {
     }
 
     const fetchQuestions = () => {
-        fetch('/api/question/all')
+        fetch('/api/question/')
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

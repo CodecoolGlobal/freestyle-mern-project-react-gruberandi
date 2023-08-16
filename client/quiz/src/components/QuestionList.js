@@ -9,7 +9,7 @@ const QuestionList = () => {
 	const favoriteSymbol = '❤️';
 
 	useEffect(() => {
-		fetch('/api/question/all')
+		fetch('/api/question/')
 			.then((res) => { return res.json() })
 			.then((fetchedQuestions) => {
 				setQuestions(fetchedQuestions);
@@ -17,8 +17,8 @@ const QuestionList = () => {
 			})
 	}, [deleted, favorite]);
 
-	const handleDelete = (id) => {
-		fetch(`/api/question/delete/${id}`, {
+	const handleDelete = (id) => { //TODO delete answer as well
+		fetch(`/api/question/${id}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json"
@@ -31,7 +31,7 @@ const QuestionList = () => {
 	const handleFavoriteClick = (question) => {
 		const newObject = { ...question }
 		newObject.isFavorite = !(newObject.isFavorite)
-		fetch(`/api/question/update/${question._id}`, {
+		fetch(`/api/question/${question._id}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json"
