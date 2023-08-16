@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Question.css';
-import Answer from './Answer';
 
 const Question = ({randomQuestion}) => {
   const [questions, setQuestions] = useState([]);
