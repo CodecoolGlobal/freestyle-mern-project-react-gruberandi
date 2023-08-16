@@ -1,7 +1,7 @@
 
-const Comment = (props) => {
-    if (props.commentsShow) {
-        if (props.question.comments.length<1){
+const Comment = ({ question, showComments }) => {
+    if (showComments) {
+        if (question.comments.length<1){
 
             return (
                 <>
@@ -12,7 +12,7 @@ const Comment = (props) => {
             return (
 
                 <div>
-                    {props.question.comments.map((comment) => {
+                    {question.comments.map((comment) => {
                         return  <div>{comment.commentText}</div>
                        
                     })}
