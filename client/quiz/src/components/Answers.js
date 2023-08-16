@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 import './Question.css';
 import Comment from "./Comment";
-
 import AnswerPart from "./AnswerPart";
-const Answer = (props) => {
-  const [comment, setComment] = useState('');
-  const randomQuestion = props.randomQuestion
 
+const Answers = ({ randomQuestion, onNewQuestion }) => {
+
+  const [comment, setComment] = useState('');
   const [answer, setAnswer] = useState(null)
   const [answerOrder, setAnswerOrder] = useState(null);
   const [answeredCorrectly, setAnswereredCorrectly] = useState(null);
-  const [commentsShow, setCommentsShow] = useState(false)
+  const [commentsShow, setCommentsShow] = useState(false);
 
   const sendComment=(id, comment) => {
     const newQuestion = { ...randomQuestion };
@@ -42,10 +41,8 @@ const Answer = (props) => {
 
 
   useEffect(() => {
-    const questionId = randomQuestion
-
-    if (questionId !== '') {
-      fetchAnswer(questionId._id)
+    if (randomQuestion !== '') {
+      fetchAnswer(randomQuestion._id)
     }
   }, [randomQuestion])
 
@@ -91,7 +88,7 @@ const Answer = (props) => {
       <>
         <div>congrats!</div>
         <button
-          onClick={() => { setAnswereredCorrectly(null); props.onNewQuestion(randomQuestion._id);setCommentsShow(false); }}>give me another question</button>
+          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id);setCommentsShow(false); }}>give me another question</button>
           <button onClick={() => {setCommentsShow(true)}}>Show Comments</button>
           <Comment question={randomQuestion} commentsShow={commentsShow}/>
       </>)
@@ -104,7 +101,7 @@ const Answer = (props) => {
       <>
         <div>sorry, wrong answer</div>
         <button
-          onClick={() => { setAnswereredCorrectly(null); props.onNewQuestion(randomQuestion._id); setCommentsShow(false); }}
+          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id); setCommentsShow(false); }}
         >give me another question</button>
         <div>
           <div>you can add a comment to this question:</div>
@@ -123,4 +120,4 @@ const Answer = (props) => {
 
 }
 
-export default Answer;
+export default Answers;
