@@ -9,7 +9,7 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
   const [answer, setAnswer] = useState(null)
   const [answerOrder, setAnswerOrder] = useState(null);
   const [answeredCorrectly, setAnswereredCorrectly] = useState(null);
-  const [commentsShow, setCommentsShow] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   const sendComment=(id, comment) => {
     const newQuestion = { ...randomQuestion };
@@ -88,9 +88,16 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
       <>
         <div>congrats!</div>
         <button
-          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id);setCommentsShow(false); }}>give me another question</button>
-          <button onClick={() => {setCommentsShow(true)}}>Show Comments</button>
-          <Comment question={randomQuestion} commentsShow={commentsShow}/>
+          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id);setShowComments(false); }}>give me another question</button>
+          <button onClick={() => {setShowComments(!showComments)}}>Show Comments</button>
+          <div>you can add a comment to this question:</div>
+          <input
+            onChange={(e) => { setComment(e.target.value) }} value={comment}></input>
+          <button
+
+          onClick={()=>{console.log(randomQuestion._id); sendComment(randomQuestion._id, comment )}}
+          >Submit comment</button>
+          <Comment question={randomQuestion} showComments={showComments}/>
       </>)
 
   }
@@ -101,7 +108,7 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
       <>
         <div>sorry, wrong answer</div>
         <button
-          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id); setCommentsShow(false); }}
+          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id); setShowComments(false); }}
         >give me another question</button>
         <div>
           <div>you can add a comment to this question:</div>
@@ -111,8 +118,8 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
 
           onClick={()=>{console.log(randomQuestion._id); sendComment(randomQuestion._id, comment )}}
           >Submit comment</button>
-          <button onClick={() => {setCommentsShow(true)}}>Show Comments</button>
-          <Comment question={randomQuestion} commentsShow={commentsShow}/>
+          <button onClick={() => {setShowComments(!showComments)}}>Show Comments</button>
+          <Comment question={randomQuestion} showComments={showComments}/>
         </div>
 
       </>)
