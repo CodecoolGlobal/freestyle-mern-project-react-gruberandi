@@ -4,7 +4,7 @@ import './Question.css';
 const Question = ({randomQuestion}) => {
   const [questions, setQuestions] = useState([]);
   const fetchQuestions = () => {
-    fetch('/api/question/all')
+    fetch('/api/question/')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

@@ -1,45 +1,53 @@
 import { useState, useEffect } from 'react';
 
 const QuestionList = () => {
-	const [questions, setQuestions] = useState([]);
+	const [questions, setQuestions] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const [deleted, setDeleted] = useState([]);
-	const [favorite, setFavorite] = useState([]);
+	const [stats, setStats] = useState(null);
 
 	const favoriteSymbol = '❤️';
 
-	useEffect(() => {
-		fetch('/api/question/all')
-			.then((res) => { return res.json() })
-			.then((fetchedQuestions) => {
-				setQuestions(fetchedQuestions);
-				setLoading(false);
-			})
-	}, [deleted, favorite]);
-
-	const handleDelete = (id) => {
-		fetch(`/api/question/delete/${id}`, {
-			method: "DELETE",
-			headers: {
-				"Content-Type": "application/json"
-			}
-		})
-			.then((res) => res.json())
-			.then((data) => setDeleted(data))
+	const fetchStats = async () => {
+		const res = await fetch("/api/stats");
+		return res.json();
 	}
 
-	const handleFavoriteClick = (question) => {
+	const fetchQuestions = async () => {
+		const res = await fetch('/api/question/');
+		return res.json();
+	}
+
+	useEffect(() => {
+		const task = async () => {
+			const [stat, questionList] = await Promise.all([fetchStats(), fetchQuestions()]);
+			setQuestions(questionList);
+			setStats(stat);
+			setLoading(false);
+		}
+		task();
+	}, []);
+
+	const handleDelete = async (id) => {
+		await fetch(`/api/question/${id}`, {
+			method: "DELETE",
+		});
+		await fetch(`/api/answer/${id}`);
+		const questions = await fetchQuestions();
+		setQuestions(questions);
+	}
+
+	const handleFavoriteClick = async (question) => {
 		const newObject = { ...question }
 		newObject.isFavorite = !(newObject.isFavorite)
-		fetch(`/api/question/update/${question._id}`, {
+		await fetch(`/api/question/${question._id}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({ ...newObject })
 		})
-			.then((res) => res.json())
-			.then((data) => setFavorite(data))
+		const questions = await fetchQuestions();
+		setQuestions(questions);
 	}
 
 	if (loading) {
@@ -50,9 +58,11 @@ const QuestionList = () => {
 	return (
 
 		<>
+			<div>Success ratio:{stats.ratio}</div>
 			{questions.map((question) => {
 				return (
-					<div>
+					<div key={question._id}>
+						<h2>{(question.answeredCorrectly / question.timesAsked)}</h2>
 						<h2>{question.question}</h2>
 						<p>Theme: {question.theme}</p>
 						{(question.isFavorite ? (

@@ -18,7 +18,7 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
       dateAdded: new Date(Date.now())
     });
 
-    fetch(`/api/question/update/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newQuestion) })
+    fetch(`/api/question/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newQuestion) })
   }
 
   const handleAnswer = (bool) => {
@@ -53,7 +53,7 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
   }, [randomQuestion])
 
   const fetchAnswer = async (id) => {
-    const response = await fetch(`/api/answer/getOne/${id}`);
+    const response = await fetch(`/api/answer/${id}`);
     return response.json();
   }
 
