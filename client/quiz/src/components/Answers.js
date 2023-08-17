@@ -28,6 +28,7 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     newAnwser.answered = true;
     newAnwser.correct = bool;
     setIsAnswered(newAnwser);
+  }
 
   const fetchAnswer = async (id) => {
     const response = await fetch(`/api/answer/${id}`);
@@ -56,14 +57,6 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     task();
   }, [randomQuestion]);
 
-  const fetchAnswer = async (id) => {
-    const response = await fetch(`/api/answer/${id}`);
-    return response.json();
-
-  const handleAnswer = (bool) => {
-    setAnswereredCorrectly(bool);
-  }
-
   const sendComment = (id, comment) => {
     const newQuestion = { ...randomQuestion };
     newQuestion.comments.push({
@@ -76,11 +69,10 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
 
   const toggleComments = () => {
     setShowComments(!showComments);
-
   }
 
   const handleNewQuestion = () => {
-    const newObject = {...isAnswered};
+    const newObject = { ...isAnswered };
 
     newObject.answered = false;
 
@@ -99,9 +91,9 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
             <AnswerPart
               key={answer._id}
               answer={answer}
-              onAnswer={handleAnswer} 
+              onAnswer={handleAnswer}
               isAnswered={isAnswered}
-              />
+            />
           )
         })}
       </div>
@@ -117,13 +109,12 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
               <AnswerPart
                 key={answer._id}
                 answer={answer}
-                onAnswer={handleAnswer} 
+                onAnswer={handleAnswer}
                 isAnswered={isAnswered}
-                />
+              />
             )
           })}
         </div>
-        <div>{isAnswered.correct ? <>Congrats</> : <>You suck</>}</div>
         <button
 
           onClick={() => { handleNewQuestion(); onNewQuestion(randomQuestion._id); setShowComments(false); }}>give me another question</button>
@@ -138,6 +129,6 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
         <Comment question={randomQuestion} showComments={showComments} toggleComments={toggleComments} />
       </>)
   }
-
+}
 
 export default Answers;
