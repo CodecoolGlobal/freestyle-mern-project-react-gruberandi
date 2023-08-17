@@ -28,7 +28,7 @@ const Question = ({randomQuestion}) => {
       <div className='question-container'>
       {randomQuestion ? (
           <div key={randomQuestion._id}>
-          <h2>{randomQuestion.question}</h2>
+          <h2 class="question-text">{randomQuestion.question}</h2>
         </div>
       ) : (
         <p>No questions available.</p>

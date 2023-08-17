@@ -28,9 +28,6 @@ const AnswerPart = ({ answer, onAnswer, isAnswered }) => {
       {answer.answer}
     </div>
   )
-
-
-
 }
 
 export default AnswerPart;

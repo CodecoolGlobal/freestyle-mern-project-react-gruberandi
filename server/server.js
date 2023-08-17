@@ -65,12 +65,12 @@ mongoose
 
 
   app.patch("/api/question/:id", async (req, res, next) => {
-    console.log(req.body);
+    console.log("req:", req.body);
     try {
       const question = await QuestionModel.findByIdAndUpdate(
         req.params.id,
         req.body);
-      res.json(question);
+        return res.json(question);
     } catch (err) {
       next(err);
     }

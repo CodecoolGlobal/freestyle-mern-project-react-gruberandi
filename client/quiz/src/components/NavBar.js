@@ -2,9 +2,9 @@
 const NavBar = ({switchPage})=>{
     return (
         <>
-            <button onClick={() => switchPage('list')}>List</button>
-            <button onClick={() => switchPage('quiz')}>Quiz</button>
-            <button onClick={()=>{ switchPage('creator')}}>Creator</button>
+            <button className="delete-button" onClick={() => switchPage('list')}>List</button>
+            <button className="delete-button" onClick={() => switchPage('quiz')}>Quiz</button>
+            <button className="delete-button" onClick={()=>{ switchPage('creator')}}>Creator</button>
         </>
     )
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './Question.css';
 
 const QuestionList = () => {
 	const [questions, setQuestions] = useState(null);
@@ -60,24 +61,31 @@ const QuestionList = () => {
 	return (
 
 		<>
-			<div>Success ratio:{stats.ratio}</div>
+			{stats.ratio != 0 &&
+				<div>Success ratio:{stats.ratio}</div>
+			}
 			{questions.map((question) => {
 				return (
-					<div key={question._id}>
-						<h2>{(question.answeredCorrectly / question.timesAsked)}</h2>
+
+					<div key={question._id} className="question-details">
+						{question.timesAsked !== 0 &&
+							<>Stats:
+								<span>{(question.answeredCorrectly / question.timesAsked)}</span>
+							</>
+						}
+
 						<h2>{question.question}</h2>
 						<p>Theme: {question.theme}</p>
 						{(question.isFavorite ? (
 							<div>
 								<p>{favoriteSymbol}</p>
-								<button onClick={() => handleFavoriteClick(question)}>
+								<button className="favorite-button" onClick={() => handleFavoriteClick(question)}>
 									Remove from favorites
 								</button>
 							</div>
 						) :
-							<button onClick={() => handleFavoriteClick(question)}>Add to favorites</button>)}
-						<button onClick={() => handleDelete(question._id)}>Delete</button>
-
+							<button className="favorite-button" onClick={() => handleFavoriteClick(question)}>Add to favorites</button>)}
+						<button className="delete-button" onClick={() => handleDelete(question._id)}>Delete</button>
 					</div>
 				)
 			})
