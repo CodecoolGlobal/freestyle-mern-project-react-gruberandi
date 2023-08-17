@@ -41,6 +41,7 @@ const Quiz = () => {
 	}, [questions, previousQuestions]);
 
 	if (randomQuestion) {
+		console.log(randomQuestion._id);
 		return (
 			<div>
 				<Question randomQuestion={randomQuestion} />
