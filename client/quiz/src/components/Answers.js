@@ -8,7 +8,7 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
   const [comment, setComment] = useState('');
   const [answer, setAnswer] = useState(null)
   const [randomAnswers, setRandomAnswers] = useState(null);
-  const [answeredCorrectly, setAnswereredCorrectly] = useState(null);
+  const [isAnswered, setIsAnswered] = useState({ answered: false, correct: null });
   const [showComments, setShowComments] = useState(false);
 
   const sendComment = (id, comment) => {
@@ -22,7 +22,10 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
   }
 
   const handleAnswer = (bool) => {
-    setAnswereredCorrectly(bool);
+    const newAnwser = { ...isAnswered };
+    newAnwser.answered = true;
+    newAnwser.correct = bool;
+    setIsAnswered(newAnwser);
   }
 
   const randomizeAnswers = (answersArray) => {
@@ -47,11 +50,6 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     task();
   }, [randomQuestion]);
 
-
-  useEffect(() => {
-
-  }, [randomQuestion])
-
   const fetchAnswer = async (id) => {
     const response = await fetch(`/api/answer/${id}`);
     return response.json();
@@ -61,7 +59,7 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     <>loading</>
   }
 
-  else if (answeredCorrectly === null) {
+  else if (!isAnswered.answered) {
     return (
       <div className="answer-container">
         {randomAnswers.map((answer) => {
@@ -69,20 +67,33 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
             <AnswerPart
               key={answer._id}
               answer={answer}
-              onAnswer={handleAnswer} />
+              onAnswer={handleAnswer} 
+              isAnswered={isAnswered}
+              />
           )
         })}
-
       </div>
     )
   }
 
-  else if (answeredCorrectly) {
+  else if (isAnswered.answered) {
     return (
       <>
-        <div>congrats!</div>
+        <div className="answer-container">
+          {randomAnswers.map((answer) => {
+            return (
+              <AnswerPart
+                key={answer._id}
+                answer={answer}
+                onAnswer={handleAnswer} 
+                isAnswered={isAnswered}
+                />
+            )
+          })}
+        </div>
+        <div>{isAnswered.correct ? <>Congrats</> : <>You suck</>}</div>
         <button
-          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id); setShowComments(false); }}>give me another question</button>
+          onClick={() => { setIsAnswered(null); onNewQuestion(randomQuestion._id); setShowComments(false); }}>give me another question</button>
         <button onClick={() => { setShowComments(!showComments) }}>Show Comments</button>
         <div>you can add a comment to this question:</div>
         <input
@@ -93,32 +104,7 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
         >Submit comment</button>
         <Comment question={randomQuestion} showComments={showComments} />
       </>)
-
   }
-
-  else {
-
-    return (
-      <>
-        <div>sorry, wrong answer</div>
-        <button
-          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id); setShowComments(false); }}
-        >give me another question</button>
-        <div>
-          <div>you can add a comment to this question:</div>
-          <input
-            onChange={(e) => { setComment(e.target.value) }} value={comment}></input>
-          <button
-
-            onClick={() => { console.log(randomQuestion._id); sendComment(randomQuestion._id, comment) }}
-          >Submit comment</button>
-          <button onClick={() => { setShowComments(!showComments) }}>Show Comments</button>
-          <Comment question={randomQuestion} showComments={showComments} />
-        </div>
-
-      </>)
-  }
-
 }
 
 export default Answers;
