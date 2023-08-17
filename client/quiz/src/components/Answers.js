@@ -14,7 +14,19 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
   useEffect(() => {
     const task = async () => {
       if (randomQuestion !== '') {
-        const randAnswer = await fetchAnswer(randomQuestion._id)
+        const randAnswer = await fetchAnswer(randomQuestion._id);
+        await fetch(`/api/question/${randomQuestion._id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(
+            {
+              ...randomQuestion,
+              timesAsked: randomQuestion.timesAsked ++,
+            }),
+        });
+
         setAnswer(randAnswer);
         setRandomAnswers(randomizeAnswers(randAnswer.answers));
       }
@@ -45,17 +57,6 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     }
     return randomArr
   }
-
-  useEffect(() => {
-    const task = async () => {
-      if (randomQuestion !== '') {
-        const randAnswer = await fetchAnswer(randomQuestion._id)
-        setAnswer(randAnswer);
-        setRandomAnswers(randomizeAnswers(randAnswer.answers));
-      }
-    }
-    task();
-  }, [randomQuestion]);
 
   const sendComment = (id, comment) => {
     const newQuestion = { ...randomQuestion };
