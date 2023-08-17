@@ -2,8 +2,8 @@
 const NavBar = ({switchPage})=>{
     return (
         <div>
-            <button onClick={() => switchPage('list')}>List</button>
-            <button onClick={() => switchPage('quiz')}>Quiz</button>
+            <button className="delete-button" onClick={() => switchPage('list')}>List</button>
+            <button className="delete-button" onClick={() => switchPage('quiz')}>Quiz</button>
         </div>
     )
 }
