@@ -31,7 +31,9 @@ const QuestionList = () => {
 		await fetch(`/api/question/${id}`, {
 			method: "DELETE",
 		});
-		await fetch(`/api/answer/${id}`);
+		await fetch(`/api/answer/${id}`, {
+			method: "DELETE",
+		});
 		const questions = await fetchQuestions();
 		setQuestions(questions);
 	}
