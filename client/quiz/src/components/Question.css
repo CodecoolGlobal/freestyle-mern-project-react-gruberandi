@@ -50,7 +50,6 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #e75c05; 
   border-color: #e75c05;
-  color: #fff; 
 }
 
 /* Styling for Question Details and Buttons */
@@ -100,3 +99,4 @@ body {
 .delete-button:hover {
   background-color: #c82333;
 }
+

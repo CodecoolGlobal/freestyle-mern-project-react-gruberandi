@@ -67,8 +67,7 @@ const QuestionList = () => {
 			{questions.map((question) => {
 				return (
 
-					<div key={question._id} className="question-details"
-					<div key={question._id}>
+					<div key={question._id} className="question-details">
 						{question.timesAsked !== 0 &&
 							<>Stats:
 								<span>{(question.answeredCorrectly / question.timesAsked)}</span>
