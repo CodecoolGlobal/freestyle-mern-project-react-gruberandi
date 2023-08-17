@@ -20,25 +20,6 @@ const Comment = ({ question, showComments, toggleComments }) => {
 				</div>
 			</div>
 		)
-		// 			return (
-		// 				<>
-		// 					<div>There are no comments added yet.</div>
-		// 				</>
-		// 			)
-		// 		} else {
-		// 			return (
-
-		// 				<div>
-		// 					{question.comments.map((comment) => {
-		// 						return <div>{comment.commentText}</div>
-
-		// 					})}
-
-		// 				</div>
-		// 			)
-
-
-
 	}
 
 }

@@ -6,21 +6,41 @@ import AnswerPart from "./AnswerPart";
 const Answers = ({ randomQuestion, onNewQuestion }) => {
 
   const [randomAnswers, setRandomAnswers] = useState(null);
+  const [isAnswered, setIsAnswered] = useState({ answered: false, correct: null });
   const [answer, setAnswer] = useState(null);
-  const [answeredCorrectly, setAnswereredCorrectly] = useState(null);
   const [comment, setComment] = useState('');
   const [showComments, setShowComments] = useState(false);
 
   useEffect(() => {
     const task = async () => {
       if (randomQuestion !== '') {
-        const randAnswer = await fetchAnswer(randomQuestion._id)
+        const randAnswer = await fetchAnswer(randomQuestion._id);
+        await fetch(`/api/question/${randomQuestion._id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(
+            {
+              ...randomQuestion,
+              timesAsked: randomQuestion.timesAsked ++,
+            }),
+        });
+
         setAnswer(randAnswer);
         setRandomAnswers(randomizeAnswers(randAnswer.answers));
       }
     }
     task();
   }, [randomQuestion]);
+
+
+  const handleAnswer = (bool) => {
+    const newAnwser = { ...isAnswered };
+    newAnwser.answered = true;
+    newAnwser.correct = bool;
+    setIsAnswered(newAnwser);
+  }
 
   const fetchAnswer = async (id) => {
     const response = await fetch(`/api/answer/${id}`);
@@ -38,10 +58,6 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     return randomArr
   }
 
-  const handleAnswer = (bool) => {
-    setAnswereredCorrectly(bool);
-  }
-
   const sendComment = (id, comment) => {
     const newQuestion = { ...randomQuestion };
     newQuestion.comments.push({
@@ -56,11 +72,19 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     setShowComments(!showComments);
   }
 
+  const handleNewQuestion = () => {
+    const newObject = { ...isAnswered };
+
+    newObject.answered = false;
+
+    setIsAnswered(newObject);
+  }
+
   if (!answer) {
     <>loading...</>
   }
 
-  else if (answeredCorrectly === null) {
+  else if (!isAnswered.answered) {
     return (
       <div className="answer-container">
         {randomAnswers.map((answer) => {
@@ -68,59 +92,47 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
             <AnswerPart
               key={answer._id}
               answer={answer}
-              onAnswer={handleAnswer} />
+              onAnswer={handleAnswer}
+              isAnswered={isAnswered}
+            />
           )
         })}
       </div>
     )
   }
 
-  else if (answeredCorrectly) {
+  else if (isAnswered.answered) {
     return (
       <>
-        <div>congrats!</div>
+        <div className="answer-container">
+          {randomAnswers.map((answer) => {
+            return (
+              <AnswerPart
+                key={answer._id}
+                answer={answer}
+                onAnswer={handleAnswer}
+                isAnswered={isAnswered}
+              />
+            )
+          })}
+        </div>
         <button
-          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id) }}>give me another question</button>
-        <button onClick={toggleComments}>Show Comments</button>
-        <div>You can add a comment to this question:</div>
-        <textarea
-          onChange={(e) => { setComment(e.target.value) }}
-          value={comment}
-          >
-          </textarea>
+
+          onClick={() => { handleNewQuestion(); onNewQuestion(randomQuestion._id); setShowComments(false); }}>give me another question</button>
+        <button onClick={() => { setShowComments(!showComments) }}>Show Comments</button>
+        <div>you can add a comment to this question:</div>
+        <input
+          onChange={(e) => { setComment(e.target.value) }} value={comment}></input>
+
         <button
-          onClick={() => { console.log(randomQuestion._id); sendComment(randomQuestion._id, comment) }}
+          onClick={() => {
+            sendComment(randomQuestion._id, comment);
+            setComment('');
+          }}
         >Submit comment</button>
         <Comment question={randomQuestion} showComments={showComments} toggleComments={toggleComments} />
       </>)
-
   }
-
-  else {
-
-    return (
-      <>
-        <div>sorry, wrong answer</div>
-        <button
-          onClick={() => { setAnswereredCorrectly(null); onNewQuestion(randomQuestion._id); }}
-        >give me another question</button>
-        <div>
-          <div>you can add a comment to this question:</div>
-          <textarea
-            onChange={(e) => { setComment(e.target.value) }}
-            value={comment}
-          >
-          </textarea>
-          <button
-
-            onClick={() => { console.log(randomQuestion._id); sendComment(randomQuestion._id, comment) }}
-          >Submit comment</button>
-          <button onClick={toggleComments}>Show Comments</button>
-          <Comment question={randomQuestion} showComments={showComments} toggleComments={toggleComments} />
-        </div>
-      </>)
-  }
-
 }
 
 export default Answers;
