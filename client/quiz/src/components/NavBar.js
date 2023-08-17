@@ -1,10 +1,11 @@
 
 const NavBar = ({switchPage})=>{
     return (
-        <div>
+        <>
             <button onClick={() => switchPage('list')}>List</button>
             <button onClick={() => switchPage('quiz')}>Quiz</button>
-        </div>
+            <button onClick={()=>{ switchPage('creator')}}>Creator</button>
+        </>
     )
 }
 export default NavBar
