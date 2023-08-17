@@ -55,6 +55,14 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
     return response.json();
   }
 
+  const handleNewQuestion = () => {
+    const newObject = {...isAnswered};
+
+    newObject.answered = false;
+
+    setIsAnswered(newObject);
+  }
+
   if (!answer) {
     <>loading</>
   }
@@ -93,7 +101,7 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
         </div>
         <div>{isAnswered.correct ? <>Congrats</> : <>You suck</>}</div>
         <button
-          onClick={() => { setIsAnswered(null); onNewQuestion(randomQuestion._id); setShowComments(false); }}>give me another question</button>
+          onClick={() => { handleNewQuestion(); onNewQuestion(randomQuestion._id); setShowComments(false); }}>give me another question</button>
         <button onClick={() => { setShowComments(!showComments) }}>Show Comments</button>
         <div>you can add a comment to this question:</div>
         <input
