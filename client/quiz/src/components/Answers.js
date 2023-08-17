@@ -124,7 +124,10 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
           onChange={(e) => { setComment(e.target.value) }} value={comment}></input>
 
         <button
-          onClick={() => { console.log(randomQuestion._id); sendComment(randomQuestion._id, comment) }}
+          onClick={() => {
+            sendComment(randomQuestion._id, comment);
+            setComment('');
+          }}
         >Submit comment</button>
         <Comment question={randomQuestion} showComments={showComments} toggleComments={toggleComments} />
       </>)
