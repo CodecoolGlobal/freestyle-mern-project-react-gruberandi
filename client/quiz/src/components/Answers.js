@@ -23,7 +23,7 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
           body: JSON.stringify(
             {
               ...randomQuestion,
-              timesAsked: randomQuestion.timesAsked ++,
+            //  timesAsked: randomQuestion.timesAsked++,
             }),
         });
 
@@ -35,10 +35,23 @@ const Answers = ({ randomQuestion, onNewQuestion }) => {
   }, [randomQuestion]);
 
 
-  const handleAnswer = (bool) => {
+  const handleAnswer = async (bool) => {
+    console.log('handle Answer is being called')
     const newAnwser = { ...isAnswered };
     newAnwser.answered = true;
     newAnwser.correct = bool;
+    const newQuestionData = { ...randomQuestion };
+    console.log(newQuestionData.timesAsked);
+    newQuestionData.timesAsked++;
+    console.log(newQuestionData.timesAsked);
+    if (bool) {
+      newQuestionData.answeredCorrectly++;
+    }
+    await fetch(`/api/question/${newQuestionData._id}`, {
+      method:'PATCH', headers:{'Content-Type':'application/json'}, body:JSON.stringify(newQuestionData)
+    });
+    console.log(`/api/question/${newQuestionData._id}`);
+    console.log(newQuestionData.timesAsked);
     setIsAnswered(newAnwser);
   }
 
